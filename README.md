@@ -117,6 +117,18 @@ Server运行环境：PHPStudy
 
 
 
+## 签到表 check
+
+| 说明   | 字段名   | 类型    |      |
+| ------ | -------- | ------- | ---- |
+| 索引   | check_id | int     |      |
+| 租约号 | lease_id | int     |      |
+| 用户号 | user_id  | int     |      |
+| 已到   | checked  | boolean |      |
+| 离开   | leave    | boolean |      |
+
+
+
 ## 笔记表 notes
 
 | 说明     | 字段名      | 类型     |
