@@ -1,133 +1,150 @@
-ThinkPHP 5.0
-===============
+# 技术文档
 
-[![Total Downloads](https://poser.pugx.org/topthink/think/downloads)](https://packagist.org/packages/topthink/think)
-[![Latest Stable Version](https://poser.pugx.org/topthink/think/v/stable)](https://packagist.org/packages/topthink/think)
-[![Latest Unstable Version](https://poser.pugx.org/topthink/think/v/unstable)](https://packagist.org/packages/topthink/think)
-[![License](https://poser.pugx.org/topthink/think/license)](https://packagist.org/packages/topthink/think)
+## 平台
 
-ThinkPHP5在保持快速开发和大道至简的核心理念不变的同时，PHP版本要求提升到5.4，对已有的CBD模式做了更深的强化，优化核心，减少依赖，基于全新的架构思想和命名空间实现，是ThinkPHP突破原有框架思路的颠覆之作，其主要特性包括：
+服务端：ThinkPHP框架 + MySQL数据库
 
- + 基于命名空间和众多PHP新特性
- + 核心功能组件化
- + 强化路由功能
- + 更灵活的控制器
- + 重构的模型和数据库类
- + 配置文件可分离
- + 重写的自动验证和完成
- + 简化扩展机制
- + API支持完善
- + 改进的Log类
- + 命令行访问支持
- + REST支持
- + 引导文件支持
- + 方便的自动生成定义
- + 真正惰性加载
- + 分布式环境支持
- + 更多的社交类库
+管理端：Web（ThinkPHP(PHP)+ jQuery(JS) + MDUI(CSS+JS) + bootstrap）
 
-> ThinkPHP5的运行环境要求PHP5.4以上。
+预定端：Web、Android(Java)
 
-详细开发文档参考 [ThinkPHP5完全开发手册](http://www.kancloud.cn/manual/thinkphp5)
+会议室前端：Qt框架 + 人脸识别SDK
 
-## 目录结构
+## 环境
 
-初始的目录结构如下：
+Server运行环境：PHPStudy
 
-~~~
-www  WEB部署目录（或者子目录）
-├─application           应用目录
-│  ├─common             公共模块目录（可以更改）
-│  ├─module_name        模块目录
-│  │  ├─config.php      模块配置文件
-│  │  ├─common.php      模块函数文件
-│  │  ├─controller      控制器目录
-│  │  ├─model           模型目录
-│  │  ├─view            视图目录
-│  │  └─ ...            更多类库目录
-│  │
-│  ├─command.php        命令行工具配置文件
-│  ├─common.php         公共函数文件
-│  ├─config.php         公共配置文件
-│  ├─route.php          路由配置文件
-│  ├─tags.php           应用行为扩展定义文件
-│  └─database.php       数据库配置文件
-│
-├─public                WEB目录（对外访问目录）
-│  ├─index.php          入口文件
-│  ├─router.php         快速测试文件
-│  └─.htaccess          用于apache的重写
-│
-├─thinkphp              框架系统目录
-│  ├─lang               语言文件目录
-│  ├─library            框架类库目录
-│  │  ├─think           Think类库包目录
-│  │  └─traits          系统Trait目录
-│  │
-│  ├─tpl                系统模板目录
-│  ├─base.php           基础定义文件
-│  ├─console.php        控制台入口文件
-│  ├─convention.php     框架惯例配置文件
-│  ├─helper.php         助手函数文件
-│  ├─phpunit.xml        phpunit配置文件
-│  └─start.php          框架入口文件
-│
-├─extend                扩展类库目录
-├─runtime               应用的运行时目录（可写，可定制）
-├─vendor                第三方类库目录（Composer依赖库）
-├─build.php             自动生成定义文件（参考）
-├─composer.json         composer 定义文件
-├─LICENSE.txt           授权说明文件
-├─README.md             README 文件
-├─think                 命令行入口文件
-~~~
 
-> router.php用于php自带webserver支持，可用于快速测试
-> 切换到public目录后，启动命令：php -S localhost:8888  router.php
-> 上面的目录结构和名称是可以改变的，这取决于你的入口文件和配置参数。
 
-## 命名规范
+# MySQL数据库
 
-`ThinkPHP5`遵循PSR-2命名规范和PSR-4自动加载规范，并且注意如下规范：
+（服务端）
 
-### 目录和文件
+运行`application/sql/install.sql`来安装
 
-*   目录不强制规范，驼峰和小写+下划线模式均支持；
-*   类库、函数文件统一以`.php`为后缀；
-*   类的文件名均以命名空间定义，并且命名空间的路径和类库文件所在路径一致；
-*   类名和类文件名保持一致，统一采用驼峰法命名（首字母大写）；
+## 会议室 rooms
 
-### 函数和类、属性命名
+| 说明     | 字段名      | 类型    |
+| -------- | ----------- | ------- |
+| 索引     | room_id     | int     |
+| 管理员   | admin_id    | int     |
+| 名称     | name        | varchar |
+| 栋       | building    | int     |
+| 楼       | floor       | int     |
+| 间       | num         | int     |
+| 最大人数 | max         | int     |
+| 话筒     | microphone  | boolean |
+| 投影仪   | projection  | boolean |
+| 价格     | price       | int     |
+| 使用中   | using       | boolean |
+| 维修中   | maintaining | boolean |
+| 创建时间 | create_time | bigint  |
+| 修改时间 | update_time | bigint  |
 
-*   类的命名采用驼峰法，并且首字母大写，例如 `User`、`UserType`，默认不需要添加后缀，例如`UserController`应该直接命名为`User`；
-*   函数的命名使用小写字母和下划线（小写字母开头）的方式，例如 `get_client_ip`；
-*   方法的命名使用驼峰法，并且首字母小写，例如 `getUserName`；
-*   属性的命名使用驼峰法，并且首字母小写，例如 `tableName`、`instance`；
-*   以双下划线“__”打头的函数或方法作为魔法方法，例如 `__call` 和 `__autoload`；
+每个会议室都有位置，选择相距尽量远的会议室
+如果栋楼都为空，那么主要用来判断的就是 num
+**使用中**为这个会议室现在是不是正在使用（暂时没什么用）
 
-### 常量和配置
+## 管理员 admins
 
-*   常量以大写字母和下划线命名，例如 `APP_PATH`和 `THINK_PATH`；
-*   配置参数以小写字母和下划线命名，例如 `url_route_on` 和`url_convert`；
+| 说明     | 字段名      | 类型    |
+| -------- | ----------- | ------- |
+| 索引     | admin_id    | int     |
+| 账号     | username    | varchar |
+| 密码     | password    | varchar |
+| 昵称     | nickname    | varchar |
+| 权限     | permission  | int     |
+| 创建时间 | create_time | bigint  |
+| 修改时间 | update_time | bigint  |
 
-### 数据表和字段
+**权限**用来限制管理员账号是否能肆意修改
 
-*   数据表和字段采用小写加下划线方式命名，并注意字段名不要以下划线开头，例如 `think_user` 表和 `user_name`字段，不建议使用驼峰和中文作为数据表字段命名。
+## 用户 users
 
-## 参与开发
+| 说明     | 字段名      | 类型    |
+| -------- | ----------- | ------- |
+| 索引     | users_id    | int     |
+| 账号     | username    | varchar |
+| 密码     | password    | varchar |
+| 昵称     | nickname    | varchar |
+| 手机     | mobile      | varchar |
+| 邮箱     | email       | varchar |
+| 公司     | company     | varchar |
+| 职位     | post        | varchar |
+| 信用度   | credit      | int     |
+| 创建时间 | create_time | bigint  |
+| 修改时间 | update_time | bigint  |
 
-请参阅 [ThinkPHP5 核心框架包](https://github.com/top-think/framework)。
+每次借出结束后都会生成一个信用度，表示借出情况、损坏状况、整洁度等
+如果出问题，会减少信用度
+**信用度**高的，优先借出（如果有冲突的话）
 
-## 版权信息
 
-ThinkPHP遵循Apache2开源协议发布，并提供免费使用。
 
-本项目包含的第三方源码和二进制文件之版权信息另行标注。
+## 租借表 lease
 
-版权所有Copyright © 2006-2018 by ThinkPHP (http://thinkphp.cn)
+| 说明       | 字段名        | 类型     |
+| ---------- | ------------- | -------- |
+| 索引       | lease_id      | int      |
+| 房间号     | room_id       | int      |
+| 管理员     | admin_id      | int      |
+| 借出人     | user_id       | int      |
+| 开始时间   | start_time    | bigint   |
+| 结束时间   | finish_time   | bigint   |
+| 主题       | theme         | varchar  |
+| 用途       | usage         | longtext |
+| 留言       | message       | longtext |
+| 场地打扫   | sweep         | boolean  |
+| 现场招待   | entertain     | boolean  |
+| 使用后环境 | circumstance  | varchar  |
+| 管理员评分 | admin_score   | int      |
+| 用户评分   | user_score    | int      |
+| 信用度变化 | credit_change | int      |
+| 创建时间   | create_time   | bigint   |
+| 修改时间   | update_time   | bigint   |
 
-All rights reserved。
+从**开始时间**借出，结束时间必须结束，可以提前结束（真正结束时间）
+留言可以说明是否需要饮品、座椅安排、其他特殊要求
+使用后会进行评分、修改信用度，如果损坏情况严重，会降信用
+可以申请场地打扫、现场招待服务，这需要会议室公司自行联系服务提供方
 
-ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
 
-更多细节参阅 [LICENSE.txt](LICENSE.txt)
+
+## 笔记表 notes
+
+| 说明     | 字段名      | 类型     |
+| -------- | ----------- | -------- |
+| 索引     | note_id     | int      |
+| 租借号   | lease_id    | int      |
+| 用户号   | user_id     | int      |
+| 内容     | content     | longtext |
+| 备注     | remark      | longtext |
+| 创建时间 | create_time | bigint   |
+| 修改时间 | update_time | bigint   |
+
+
+
+# ThinkPHP框架
+
+
+
+
+
+# jQuery框架
+
+
+
+
+
+# MDUI框架
+
+
+
+
+
+# Qt框架
+
+
+
+
+
