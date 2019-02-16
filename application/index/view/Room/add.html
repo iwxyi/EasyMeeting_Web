@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>添加会议室</title>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="{:url('insert')}" method="post">
+                <label>管理员:</label>
+                <select name="admin_id">
+                    {volist name="$Admins" id="admin"}
+                        <option value="{$admin->getData('admin_id')}" >{$admin->getName()}</option>
+                    {/volist}
+                </select><br />
+                <label>名称:</label>
+                <input type="text" name="name" value="未命名会议室" /><br />
+                <label>标准人数:</label>
+                <input type="text" name="max" value="30" /><br />
+                <button type="submit">保存</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

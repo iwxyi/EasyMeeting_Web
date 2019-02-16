@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+
+<body class="container">
+    <form action="{:url('userAdd')}" method="post">
+        <label for="username">账号：</label>
+        <input type="text" name="username" id="username" />
+        <br />
+        <label for="password">密码：</label>
+        <input type="text" name="password" />
+        <br />
+        <label for="password">昵称：</label>
+        <input type="text" name="nickname" />
+        <br />
+        <button type="submit">注册</button>
+    </form>
+</body>
+
+</html>

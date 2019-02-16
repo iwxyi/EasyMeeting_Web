@@ -1,0 +1,25 @@
+{extend name="all_template" /}
+{block name="titile"}管理员列表{/block}
+
+{block name="list"}
+    <table class="table table-hover table-bordered">
+        <tr class="info">
+            <th>序号</th>
+            <th>账号</th>
+            <th>密码</th>
+            <th>昵称</th>
+            <th>权限</th>
+        </tr>
+        {volist name="admins" id="admin" key="key"}
+        <tr>
+            <td>{$admin->getData('admin_id')}</td>
+            <td>{$admin->getData('username')}</td>
+            <td>{$admin->getData('password')}</td>
+            <td>{$admin->getData('nickname')}</td>
+            <td><a class="btn btn-sm btn-primary" href="{:url('edit?admin_id=' . $admin->getData('admin_id'))}"><i class="glyphicon glyphicon-pencil"></i> 编辑</a>
+            	<a class="btn btn-danger btn-sm" href="{:url('delete?admin_id=' . $admin->getData('admin_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
+        </tr>
+        {/volist}
+    </table>
+    {$admins->render()}
+{/block}

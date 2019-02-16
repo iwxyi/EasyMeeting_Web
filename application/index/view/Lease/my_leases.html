@@ -1,0 +1,69 @@
+<head>
+	<meta charset="utf-8">
+	<title>我的租约会议室</title>
+	<link rel="stylesheet" type="text/css" href="/easymeeting/public/static/bootstrap/css/bootstrap.min.css">
+</head>
+<body class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<hr />
+			<div class="row">
+				<div class="col-md-8">
+					<form class="form-inline">
+						<div class="form-group">
+							<!-- <label class="sr_only" for="name">搜索</label> -->
+							<input name="name" type="text" class="form-control" placeholder="主题..." value="{:input('get.name')}" />
+						</div>
+						<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+					</form>
+				</div>
+				<a href="{:url('addLease')}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;我要租约</a>
+			</div>
+			
+			<hr />
+		    <table class="table table-hover table-bordered">
+		        <tr class="info">
+		            <th>序号</th>
+		            <th>会议室名称</th>
+		            <th>管理员</th>
+		            <th>开始时间</th>
+		            <th>结束时间</th>
+		            <th>会议主题</th>
+		            <th>用途</th>
+		            <th>留言</th>
+		            <th>清理</th>
+		            <th>招待</th>
+		            <th>使用</th>
+		            <th>评分</th>
+		            <th>操作</th>
+		        </tr>
+		        {volist name="leases" id="lease" key="key"}
+		        <tr>
+					<td>{$lease->getData('lease_id')}</td>
+					<td>{$lease->Room()->getData('name')}</td>
+					<td>{$lease->Admin()->getName()}</td>
+					<td>{$lease->getStartTimeShowed()}</td>
+					<td>{$lease->getFInishTimeShowed()}</td>
+					<td>{$lease->getData('theme')}</td>
+					<td>{$lease->getData('usage')}</td>
+					<td>{$lease->getData('message')}</td>
+					<td>{$lease->sweep}</td>
+					<td>{$lease->entertain}</td>
+					<td>{$lease->getData('circumstance')}</td>
+					<td>{$lease->getData('admin_score')}</td>
+					<td>
+						{eq name="$lease->canFinish()" value="1"}
+							<a class="btn btn-sm btn-primary" href="{:url('finishLease?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-pencil"></i> 提前结束</a>
+						{/eq}
+						{eq name="lease->canFinish()" value="0"}
+							<a class="btn btn-sm btn-primary" href="{:url('giveScore?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-star"></i> 评分</a>
+						{/eq}
+						<a class="btn btn-sm btn-primary" href="{:url('editLease?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-pencil"></i> 编辑</a>
+		            	<a class="btn btn-danger btn-sm" href="{:url('deleteLease?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
+		        </tr>
+		        {/volist}
+		    </table>
+		
+		</div>
+	</div>
+</body>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>新增数据</title>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="{:url('insert')}" method="post">
+                <label>账号:</label>
+                <input type="text" name="username" /><br />
+                <label>密码:</label>
+                <input type="text" name="password" /><br />
+                <label>昵称:</label>
+                <input type="text" name="nickname" /><br />
+                <label>权限:</label>
+                <select name="permission">
+                    <option value="0">只读</option>
+                    <option value="1">允许修改</option>
+                    <option value="2">允许删除</option>
+                    <option value="9">完整权限</option>
+                </select><br />
+                <button type="submit">添加</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

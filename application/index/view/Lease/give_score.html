@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>编辑租约订单</title>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>管理员评分说明</h4>
+            <p>
+                <b>信用度</b>为用户对本公司的信誉程度，信用度高者可在资源紧张时获得优先服务（优先借出会议室、优先安排服务人员等），并可享受一定的价格折扣。
+            </p>
+            <p>
+                默认为100，即每次正常借出增加100信用度。允许负值。
+            </p>
+            <p>
+                根据以上介绍，请您（管理员）客观评价。
+            </p>
+
+            <hr>
+
+            <form action="{:url('setScore')}" method="post">
+                <input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}" />
+
+                <label for="circumstance">使用后环境记录：</label>
+                <input type="text" name="circumstance" value="{$lease->getData('circumstance')}" /> <br />
+                <label for="admin_score">对此次租约评分：</label>
+                <input type="text" name="admin_score" value="{$default_score}" /> <br />
+
+                <button type="submit">保存</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

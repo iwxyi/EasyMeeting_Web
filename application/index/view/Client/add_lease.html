@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>会议室租约</title>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="{:url('insertLease')}" method="post">
+
+                <label for="start_time">会议开始时间：</label>
+                <input type="datetime-local" name="start_time" value="{$start_time}" /> <br />
+                <label for="finish_time">会议结束时间：</label>
+                <input type="datetime-local" name="finish_time" value="{$finish_time}" /> <br />
+                <label for="theme">预计总人数：</label>
+                <input type="number" name="max" value="30" /> <br />
+
+
+                <label for="theme">会议主题：</label>
+                <input type="text" name="theme" /> <br />
+                <label for="usage">会议用途：</label>
+                <input type="text" name="usage" /> <br />
+                <label for="message">额外留言：</label>
+                <input type="text" name="message" /> <br />
+
+                <input type="checkbox" name="sweep" checked="checked" /> 场地清理服务<br />
+                <input type="checkbox" name="entertain" /> 现场招待服务<br />
+
+                <label>选择会议室:</label>
+                <select name="room_id">
+                    <option value="0" selected="selected">智能分配（推荐）</option>
+                    {volist name="$rooms" id="room"}
+                        <option value="{$room->getData('room_id')}">{$room->getData('name')}</option>
+                    {/volist}
+                </select><br />
+
+                <button type="submit">确定</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

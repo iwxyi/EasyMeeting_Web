@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>编辑租约订单</title>
+</head>
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>编辑租借订单</title>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form action="{:url('updateLease')}" method="post">
+                <input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}" />
+                <label>租借会议室:</label>
+                <select name="room_id">
+                    {volist name="$rooms" id="room"}
+                        <option value="{$room->getData('room_id')}"
+                            {eq name="$lease->getData('room_id')" value="$room->getData('room_id')"}
+                                selected="selected"
+                            {/eq}
+                        >{$room->getData('name')}</option>
+                    {/volist}
+                </select><br />
+
+                <label for="start_time">开始时间：</label>
+                <input type="datetime-local" name="start_time" value="{$start_time}" /> <br />
+                <label for="finish_time">结束时间：</label>
+                <input type="datetime-local" name="finish_time" value="{$finish_time}" /> <br />
+
+                <label for="theme">主题：</label>
+                <input type="text" name="theme" value="{$lease->getData('theme')}" /> <br />
+                <label for="usage">用途：</label>
+                <input type="text" name="usage" value="{$lease->getData('usage')}" /> <br />
+                <label for="message">留言：</label>
+                <input type="text" name="message" value="{$lease->getData('message')}" /> <br />
+
+                <input type="checkbox" name="sweep"
+                {eq name="$lease->getData('sweep')" value="1" }
+                    checked="checked"
+                {/eq}
+                /> 场地清理服务<br />
+                <input type="checkbox" name="entertain"
+                {eq name="$lease->getData('entertain')" value="1" }
+                    checked="checked"
+                {/eq}
+                /> 现场招待服务<br />
+
+                <button type="submit">保存</button>
+            </form>
+        </div>
+    </div>
+</body>
