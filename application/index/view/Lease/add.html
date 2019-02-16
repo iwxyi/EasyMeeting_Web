@@ -1,55 +1,46 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
+{extend name="edit_template" /}
 
-<head>
-    <meta charset="UTF-8">
-    <title>手动增加租约订单</title>
-</head>
+{block name="title"}手动增加租约订单{/block}
 
-<body class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form action="{:url('insert')}" method="post">
-                <label>租借会议室:</label>
-                <select name="room_id">
-                    <option value="0" selected="selected">智能分配（推荐）</option>
-                    {volist name="$rooms" id="room"}
-                        <option value="{$room->getData('room_id')}">{$room->getData('name')}</option>
-                    {/volist}
-                </select><br />
-                <label>设置负责人:</label>
-                <select name="admin_id">
-                    <option value="0" selected="selected">会议室默认管理员</option>
-                    {volist name="$admins" id="admin"}
-                        <option value="{$admin->getData('admin_id')}">{$admin->getName()}</option>
-                    {/volist}
-                </select><br />
-                <label>租借的用户:</label>
-                <select name="user_id">
-                    {volist name="$users" id="user"}
-                        <option value="{$user->getData('user_id')}">{$user->getData('nickname')}</option>
-                    {/volist}
-                </select><br />
+{block name="content"}
+    <form action="{:url('insert')}" method="post">
+        <label>租借会议室:</label>
+        <select name="room_id">
+            <option value="0" selected="selected">智能分配（推荐）</option>
+            {volist name="$rooms" id="room"}
+                <option value="{$room->getData('room_id')}">{$room->getData('name')}</option>
+            {/volist}
+        </select><br />
+        <label>设置负责人:</label>
+        <select name="admin_id">
+            <option value="0" selected="selected">会议室默认管理员</option>
+            {volist name="$admins" id="admin"}
+                <option value="{$admin->getData('admin_id')}">{$admin->getName()}</option>
+            {/volist}
+        </select><br />
+        <label>租借的用户:</label>
+        <select name="user_id">
+            {volist name="$users" id="user"}
+                <option value="{$user->getData('user_id')}">{$user->getData('nickname')}</option>
+            {/volist}
+        </select><br />
 
-                <label for="start_time">开始时间：</label>
-                <input type="datetime-local" name="start_time" value="{$start_time}" /> <br />
-                <label for="finish_time">结束时间：</label>
-                <input type="datetime-local" name="finish_time" value="{$finish_time}" /> <br />
+        <label for="start_time">开始时间：</label>
+        <input type="datetime-local" name="start_time" value="{$start_time}" /> <br />
+        <label for="finish_time">结束时间：</label>
+        <input type="datetime-local" name="finish_time" value="{$finish_time}" /> <br />
 
-                <label for="theme">主题：</label>
-                <input type="text" name="theme" /> <br />
-                <label for="usage">用途：</label>
-                <input type="text" name="usage" /> <br />
-                <label for="message">留言：</label>
-                <input type="text" name="message" /> <br />
+        <label for="theme">主题：</label>
+        <input type="text" name="theme" /> <br />
+        <label for="usage">用途：</label>
+        <input type="text" name="usage" /> <br />
+        <label for="message">留言：</label>
+        <input type="text" name="message" /> <br />
 
-                <input type="checkbox" name="sweep" checked="checked" /> 场地清理服务<br />
-                <input type="checkbox" name="entertain" /> 现场招待服务<br />
+        <input type="checkbox" name="sweep" checked="checked" /> 场地清理服务<br />
+        <input type="checkbox" name="entertain" /> 现场招待服务<br />
+        <input type="checkbox" name="entertain" /> 远程视频服务<br />
 
-                <button type="submit">添加</button>
-            </form>
-        </div>
-    </div>
-</body>
-
-</html>
+        <button type="submit">添加</button>
+    </form>
+{/block}

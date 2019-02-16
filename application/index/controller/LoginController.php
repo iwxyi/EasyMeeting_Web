@@ -29,14 +29,16 @@ class LoginController extends Controller
 			return $this->success('用户登录成功', url('Client/index'));
 		}
 		else {
-			return $this->error('用户名不存在或密码错误', url('index'));
+			return $this->error('用户名不存在或密码错误', Request::instance()->header('referer'));
 		}
 	}
 
 	public function logOut()
 	{
-		if (Admin::logOut()) {
-			return $this->success('退出成功', url('index'));
+		$result1 = Admin::logOut();
+		$result2 = User::logOut();
+		if ($result1 || $result2) {
+			return $this->success('注销成功', url('index'));
 		} else {
 			return $this->error('退出失败', url('index'));
 		}

@@ -30,7 +30,7 @@ class User extends Model
 		return sha1(md5($password) . 'smartmeeting');
 	}
 
-	public function logOut()
+	static public function logOut()
 	{
 		session('user_id', null);
 		return true;

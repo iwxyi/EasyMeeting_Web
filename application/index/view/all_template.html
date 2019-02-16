@@ -4,6 +4,58 @@
 	<link rel="stylesheet" type="text/css" href="/easymeeting/public/static/bootstrap/css/bootstrap.min.css">
 </head>
 <body class="container">
+
+	<!-- 菜单导航 -->
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="http://www.iwxyi.com/easymeeting">智能会议室{eq name="$Think.session.admin_id" value="1"}(管理员){/eq}</a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                        	<!-- 主管理员账号 -->
+                        	{eq name="$Think.session.admin_id" value="1"}
+                        		<li {eq name=":request()->controller()" value="Admin"}class="active"{/eq}><a href="{:url('Admin/index')}">管理员列表</a></li>
+                        	{/eq}
+                        	<!-- 管理员账号 -->
+                        	{neq name="$Think.session.admin_id" value=""}
+	                            <li {eq name=":request()->controller()" value="Room"}class="active"{/eq}><a href="{:url('Room/index')}">房间管理</a></li>
+	                            <li {eq name=":request()->controller()" value="User"}class="active"{/eq}><a href="{:url('User/index')}">用户管理</a></li>
+	                            <li {eq name=":request()->controller()" value="Lease"}{eq name=":request()->action()" value="myleases"}{else/}class="active"{/eq}{/eq}><a href="{:url('Lease/index')}">租约管理</a></li>
+	                            <li {eq name=":request()->controller()" value="Lease"}{eq name=":request()->action()" value="myleases"}class="active"{/eq}{/eq}><a href="{:url('Lease/MyLeases')}">我的租约</a></li>
+	                        {/neq}
+	                        <!-- 用户账号 -->
+	                        {neq name="$Think.session.user_id" value=""}
+	                        	<li {eq name=":request()->controller()" value="Client"}class="active"{/eq}><a href="{:url('Client/MyLeases')}">我的租约</a></li>
+	                        {/neq}
+	                        <!-- 未登录账号 -->
+	                        {eq name="$Think.session.user_id" value=""}
+	                        	{eq name="$Think.session.admin_id" value=""}
+		                        	<li><a href="{:url('Login/index')}">登录</a></li>
+		                        	<li><a href="{:url('Login/index')}"> 注册</a></li>
+		                        {/eq}
+							{/eq}
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                        	{eq name="$Think.session.admin_id" value=""}
+                        		{eq name="$Think.session.user_id" value=""}
+                        		{else/}
+	                        		<!-- 用户账号登录 -->
+                        			<li><a href="#">账号</a></li>
+                        			<li><a href="{:url('Login/logout')}">注销</a></li>
+	                            {/eq}
+	                        {else/}
+                            	<li><a href="{:url('Login/logout')}">注销</a></li>
+                        	{/eq}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
 	<div class="row">
 		<div class="col-md-12">
 			{block name="search"}
@@ -13,7 +65,7 @@
 					<form class="form-inline">
 						<div class="form-group">
 							<!-- <label class="sr_only" for="name">搜索</label> -->
-							<input name="name" type="text" class="form-control" placeholder="昵称/账号..." value="{:input('get.name')}" />
+							<input name="name" type="text" class="form-control" placeholder="{block name="search_placeholder"}昵称/账号{/block}..." value="{:input('get.name')}" />
 						</div>
 						<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
 					</form>

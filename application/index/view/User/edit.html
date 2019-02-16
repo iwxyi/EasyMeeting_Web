@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
+{extend name="edit_template" /}
 
-<head>
-    <meta charset="UTF-8">
-    <title>编辑用户</title>
-</head>
+{block name="title"}编辑用户{/block}
 
-<body class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form action="{:url('update')}" method="post">
-                <input type="hidden" name="user_id" value="{$User->getData('user_id')}" />
-                <label>账号:</label>
-                <input type="text" name="username" value="{$User->getData('username')}" /><br />
-                <label>密码:</label>
-                <input type="text" name="password" value="{$User->getData('password')}" /><br />
-                <label>昵称:</label>
-                <input type="text" name="nickname" value="{$User->getData('nickname')}" /><br />
-                <button type="submit">保存</button>
-            </form>
-        </div>
-    </div>
-</body>
-
-</html>
+{block name="content"}
+    <form action="{:url('update')}" method="post">
+        <input type="hidden" name="user_id" value="{$User->getData('user_id')}" />
+        <label>账号:</label>
+        <input type="text" name="username" value="{$User->getData('username')}" /><br />
+        <label>密码:</label>
+        <input type="text" name="password" value="{$User->getData('password')}" /><br />
+        <label>昵称:</label>
+        <input type="text" name="nickname" value="{$User->getData('nickname')}" /><br />
+        <button type="submit">保存</button>
+    </form>
+{/block}

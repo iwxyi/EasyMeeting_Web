@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
+{extend name="edit_template" /}
 
-<head>
-    <meta charset="UTF-8">
-    <title>用户注册</title>
-</head>
+{block name="title"}用户注册{/block}
 
-<body class="container">
+{block name="content"}
     <form action="{:url('userAdd')}" method="post">
         <label for="username">账号：</label>
         <input type="text" name="username" id="username" />
@@ -19,6 +15,4 @@
         <br />
         <button type="submit">注册</button>
     </form>
-</body>
-
-</html>
+{/block}

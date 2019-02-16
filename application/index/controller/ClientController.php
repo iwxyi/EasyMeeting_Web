@@ -91,6 +91,10 @@ class ClientController extends Controller
 			$lease->entertain = true;
 		else
 			$lease->entertain = false;
+		if (isset($post['remote']))
+			$lease->remote = true;
+		else
+			$lease->remote = false;
 
 		// 添加到数据库
 		$state = $lease->validate(true)->save();
@@ -138,6 +142,10 @@ class ClientController extends Controller
 				$lease->entertain = true;
 			else
 				$lease->entertain = false;
+			if (isset($post['remote']))
+				$lease->remote = true;
+			else
+				$lease->remote = false;
 
 			if (isset($post['start_time']))
 				$lease->start_time = strtotime($post['start_time']);
@@ -161,9 +169,8 @@ class ClientController extends Controller
 	{
 		$lease_id = Request::instance()->param('lease_id/d');
 		$lease = Lease::get($lease_id);
-
 		if (is_null($lease))
-			return $this->error('未获取到订单ID', Request::instance()->header('referer'));
+			return $this->error('未获取到租约ID', Request::instance()->header('referer'));
 		
 		if (!$lease->delete())
 			return $this->error('删除失败' . $lease->getError(), Request::instance()->header('referer'));
@@ -178,7 +185,16 @@ class ClientController extends Controller
 	 */
 	public function finishLease()
 	{
+		$lease_id = Request::instance()->param('lease_id');
+		$lease = Lease::get($lease_id);
+		if (is_null($lease))
+			return $this->error('未获取到租约ID', Request::instance()->header('referer'));
 
+		$time = time();
+		$lease->finish_time = time();
+		$lease->save();
+
+		return $this->success('已经设置本次租约已结束。<br>若需要修改，请在列表中编辑。', url('myLeases'));
 	}
 	
 }

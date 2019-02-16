@@ -30,7 +30,7 @@ class LeaseController extends Controller
 		$name = Request::instance()->param('name');
 		if (!empty($name)) {
 			$w = "%$name%";
-			$Lease->where("user_id like '$w' or admin_id like '$w' or room_id like '$w' or lease_id like '$w' or theme like '$w'  or message like '$w'");
+			$Lease->where("user_id like '$w' or admin_id like '$w' or room_id like '$w' or lease_id like '$w' or theme like '$w' or message like '$w'");
 		}
 
 		$leases = $Lease->paginate(5, false, [
@@ -92,6 +92,10 @@ class LeaseController extends Controller
 			$lease->entertain = true;
 		else
 			$lease->entertain = false;
+		if (isset($post['remote']))
+			$lease->remote = true;
+		else
+			$lease->remote = false;
 
 		$state = $lease->validate(true)->save();
 		if ($state) {
@@ -142,6 +146,10 @@ class LeaseController extends Controller
 				$lease->entertain = true;
 			else
 				$lease->entertain = false;
+			if (isset($post['remote']))
+				$lease->remote = true;
+			else
+				$lease->remote = false;
 
 			if (isset($post['start_time']))
 				$lease->start_time = strtotime($post['start_time']);

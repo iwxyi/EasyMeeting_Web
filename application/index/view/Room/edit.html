@@ -1,30 +1,20 @@
-<!DOCTYPE html>
-<html lang="zh-cn">
+{extend name="edit_template" /}
 
-<head>
-    <meta charset="UTF-8">
-    <title>编辑会议室</title>
-</head>
+{block name="title"}编辑会议室{/block}
 
-<body class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form action="{:url('update')}" method="post">
-                <input type="hidden" name="room_id" value="{$Room->getData('room_id')}" />
-                <label>管理员:</label>
-                <select name="admin_id">
-                    {volist name="$Room->Admin->select()" id="admin"}
-                        <option value="{$admin->getData('admin_id')}" {eq name="$admin->getData('admin_id')" value="$admin->getData('admin_id')"}selected="selected"{/eq}>{$admin->getName()}</option>
-                    {/volist}
-                </select><br />
-                <label>名称:</label>
-                <input type="text" name="name" value="{$Room->getData('name')}" /><br />
-                <label>标准人数:</label>
-                <input type="text" name="max" value="{$Room->getData('max')}" /><br />
-                <button type="submit">保存</button>
-            </form>
-        </div>
-    </div>
-</body>
-
-</html>
+{block name="content"}
+    <form action="{:url('update')}" method="post">
+        <input type="hidden" name="room_id" value="{$Room->getData('room_id')}" />
+        <label>管理员:</label>
+        <select name="admin_id">
+            {volist name="$Room->Admin->select()" id="admin"}
+                <option value="{$admin->getData('admin_id')}" {eq name="$admin->getData('admin_id')" value="$admin->getData('admin_id')"}selected="selected"{/eq}>{$admin->getName()}</option>
+            {/volist}
+        </select><br />
+        <label>名称:</label>
+        <input type="text" name="name" value="{$Room->getData('name')}" /><br />
+        <label>标准人数:</label>
+        <input type="text" name="max" value="{$Room->getData('max')}" /><br />
+        <button type="submit">保存</button>
+    </form>
+{/block}

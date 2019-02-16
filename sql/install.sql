@@ -76,6 +76,17 @@ CREATE TABLE `lease` (
 	PRIMARY KEY(`lease_id`)
 )ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+-- 创建签到表
+DROP TABLE IF EXISTS `check`;
+CREATE TABLE `check` (
+	`check_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+	`lease_id` int(11) NOT NULL COMMENT '租约号',
+	`user_id` int(11) NOT NULL COMMENT '用户号',
+	`checked` boolean DEFAULT false COMMENT '已经到达',
+	`leave` boolean DEFAULT false COMMENT '已经离开',
+	PRIMARY KEY(`check_id`)
+)ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
 -- 创建笔记表
 DROP TABLE IF EXISTS `note`;
 CREATE TABLE `note` (
@@ -93,10 +104,13 @@ CREATE TABLE `note` (
 -- 插入测试数据
 BEGIN;
 
+-- 管理员
+INSERT INTO admin (username, password, nickname) values ('admin', '0', '主管理员');
 INSERT INTO admin (username, password, nickname) values ('admin1', '1', 'admin1');
 INSERT INTO admin (username, password, nickname) values ('admin2', '2', 'admin2');
 INSERT INTO admin (username, password, nickname) values ('admin3', '3', 'admin3');
 
+-- 会议室
 INSERT INTO room (admin_id, name) values (1, '会议室1号');
 INSERT INTO room (admin_id, name) values (1, '会议室2号');
 INSERT INTO room (admin_id, name) values (1, '会议室3号');
@@ -105,6 +119,21 @@ INSERT INTO room (admin_id, name) values (1, '会议室5号');
 INSERT INTO room (admin_id, name) values (1, '会议室6号');
 INSERT INTO room (admin_id, name) values (1, '会议室7号');
 INSERT INTO room (admin_id, name) values (1, '会议室8号');
+
+-- 用户
+INSERT INTO user (username, password, nickname) values ('user1', '1', '用户1');
+INSERT INTO user (username, password, nickname) values ('user2', '2', '用户2');
+INSERT INTO user (username, password, nickname) values ('user3', '3', '用户3');
+INSERT INTO user (username, password, nickname) values ('user4', '4', '用户4');
+INSERT INTO user (username, password, nickname) values ('user5', '5', '用户5');
+
+-- 租约
+INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, usage, message, sweep, entertain, remote)
+	values ('1', '0', '1550304000', '1550311200', '开发会议', '讨论智能会议室', '', '0', '0', '0');
+INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, usage, message, sweep, entertain, remote)
+	values ('1', '0', '1550304000', '1550311200', '吃饭', '就是吃个饭', '需要准备一口锅', '0', '0', '0');
+INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, usage, message, sweep, entertain, remote)
+	values ('2', '3', '1550304000', '1550311200', '开会', '特殊会议', '带上吃饭的交货', '0', '0', '0');
 
 COMMIT;
 
