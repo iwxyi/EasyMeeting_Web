@@ -107,7 +107,7 @@ CREATE TABLE `note` (
 BEGIN;
 
 -- 管理员
-INSERT INTO admin (username, password, nickname) values ('admin', '0', '主管理员');
+INSERT INTO admin (username, password, nickname) values ('admin0', '0', '主管理员');
 INSERT INTO admin (username, password, nickname) values ('admin1', '1', 'admin1');
 INSERT INTO admin (username, password, nickname) values ('admin2', '2', 'admin2');
 INSERT INTO admin (username, password, nickname) values ('admin3', '3', 'admin3');
@@ -123,6 +123,7 @@ INSERT INTO room (admin_id, name) values (1, '会议室7号');
 INSERT INTO room (admin_id, name) values (1, '会议室8号');
 
 -- 用户
+INSERT INTO user (username, password, nickname) values ('user0', '0', '用户0');
 INSERT INTO user (username, password, nickname) values ('user1', '1', '用户1');
 INSERT INTO user (username, password, nickname) values ('user2', '2', '用户2');
 INSERT INTO user (username, password, nickname) values ('user3', '3', '用户3');

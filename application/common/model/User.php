@@ -44,7 +44,7 @@ class User extends Model
 
 	public function getName()
 	{
-		if (!empty($this->getData('nickname')))
+		if (($this->getData('nickname')) != "")
 			return $this->getData('nickname');
 		return $this->getData('username');
 	}

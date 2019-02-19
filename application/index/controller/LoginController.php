@@ -18,7 +18,7 @@ class LoginController extends Controller
 		$post = Request::instance()->post();
 
 		if (isset($post['register'])) {
-			return $this->fetch('userRegister');
+			return $this->fetch('user_register');
 		}
 
 		// 直接调用 M 层方法，进行登录

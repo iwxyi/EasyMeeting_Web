@@ -6,6 +6,8 @@ class Lease extends Model
 {
 	public function Admin()
 	{
+		if ($this->getData('admin_id') == "")
+			return Admin::get($this->Room()->getData('admin_id'));
 		return Admin::get($this->getData('admin_id'));
 	}
 
