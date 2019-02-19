@@ -130,11 +130,11 @@ INSERT INTO user (username, password, nickname) values ('user4', '4', '用户4')
 INSERT INTO user (username, password, nickname) values ('user5', '5', '用户5');
 
 -- 租约
-INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, usage, message, sweep, entertain, remote)
+INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, `usage`, message, sweep, entertain, remote)
 	values ('1', '0', '1550304000', '1550311200', '开发会议', '讨论智能会议室', '', false, false, false);
-INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, usage, message, sweep, entertain, remote)
+INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, `usage`, message, sweep, entertain, remote)
 	values ('1', '0', '1550304000', '1550311200', '吃饭', '就是吃个饭', '需要准备一口锅', false, false, false);
-INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, usage, message, sweep, entertain, remote)
+INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, `usage`, message, sweep, entertain, remote)
 	values ('2', '3', '1550304000', '1550311200', '开会', '特殊会议', '带上吃饭的交货', false, false, false);
 
 COMMIT;
