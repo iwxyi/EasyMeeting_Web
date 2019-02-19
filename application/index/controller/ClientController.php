@@ -7,6 +7,7 @@ use app\common\model\User;
 use app\common\model\Admin;
 use app\common\model\Room;
 use app\common\model\Lease;
+use app\common\model\Check;
 
 class ClientController extends Controller
 {
@@ -195,6 +196,26 @@ class ClientController extends Controller
 		$lease->save();
 
 		return $this->success('已经设置本次租约已结束。<br>若需要修改，请在列表中编辑。', url('myLeases'));
+	}
+
+	public function join()
+	{
+		$lease_id = Request::instance()->param('lease_id');
+		$user_id = session('user_id');
+		$map = ['lease_id'=>$lease_id, 'user_id'=>$user_id];
+		$check = Check::get($map);
+		if (is_null($check)) // 没有添加
+		{
+			$check = new Check;
+			$check->lease_id = $lease_id;
+			$check->user_id = $user_id;
+			$check->save();
+			return $this->success('参与成功', url('index'));
+		}
+		else
+		{
+			return $this->success('您已经参加了，无需重复参与', url('index'));
+		}
 	}
 	
 }

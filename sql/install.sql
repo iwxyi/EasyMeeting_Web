@@ -84,6 +84,8 @@ CREATE TABLE `check` (
 	`user_id` int(11) NOT NULL COMMENT '用户号',
 	`checked` boolean DEFAULT false COMMENT '已经到达',
 	`leave` boolean DEFAULT false COMMENT '已经离开',
+	`create_time` bigint COMMENT '创建时间',
+	`update_time` bigint COMMENT '修改时间',
 	PRIMARY KEY(`check_id`)
 )ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -129,11 +131,11 @@ INSERT INTO user (username, password, nickname) values ('user5', '5', '用户5')
 
 -- 租约
 INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, usage, message, sweep, entertain, remote)
-	values ('1', '0', '1550304000', '1550311200', '开发会议', '讨论智能会议室', '', '0', '0', '0');
+	values ('1', '0', '1550304000', '1550311200', '开发会议', '讨论智能会议室', '', false, false, false);
 INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, usage, message, sweep, entertain, remote)
-	values ('1', '0', '1550304000', '1550311200', '吃饭', '就是吃个饭', '需要准备一口锅', '0', '0', '0');
+	values ('1', '0', '1550304000', '1550311200', '吃饭', '就是吃个饭', '需要准备一口锅', false, false, false);
 INSERT INTO lease (room_id, user_id, start_time, finish_time, theme, usage, message, sweep, entertain, remote)
-	values ('2', '3', '1550304000', '1550311200', '开会', '特殊会议', '带上吃饭的交货', '0', '0', '0');
+	values ('2', '3', '1550304000', '1550311200', '开会', '特殊会议', '带上吃饭的交货', false, false, false);
 
 COMMIT;
 

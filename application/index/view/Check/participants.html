@@ -1,0 +1,33 @@
+{extend name="all_template" /}
+
+{block name="title"}与会人员签到表{/block}
+
+{block name="search_placeholder"}昵称/账号{/block}
+
+{block name="add"}
+    <a href="{:url('invite?lease_id=' . $lease->getData('lease_id'))}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;邀请</a>
+    <a href="{:url('add?lease_id=' . $lease->getData('lease_id'))}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a>
+{/block}
+
+{block name="list"}
+    <table class="table table-hover table-bordered">
+        <tr class="info">
+            <th>序号</th>
+            <th>昵称</th>
+            <th>签到</th>
+            <th>签退</th>
+            <th>操作</th>
+        </tr>
+        {volist name="checks" id="check" key="key"}
+        <tr>
+            <td>{$key}</td>
+            <td>{$check->User()->getData('nickname')}</td>
+            <td>{$check->getData('checked')}</td>
+            <td>{$check->getData('leave')}</td>
+            <td><a class="btn btn-sm btn-primary" href="{:url('toCheck?check_id=' . $check->getData('check_id'))}"><i class="glyphicon glyphicon-pencil"></i> 签到</a>
+                <a class="btn btn-sm btn-primary" href="{:url('toLeave?check_id=' . $check->getData('check_id'))}"><i class="glyphicon glyphicon-pencil"></i> 签退</a>
+            	<a class="btn btn-danger btn-sm" href="{:url('toDelete?check_id=' . $check->getData('check_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
+        </tr>
+        {/volist}
+    </table>
+{/block}

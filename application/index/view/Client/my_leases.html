@@ -4,6 +4,10 @@
 
 {block name="search_placeholder"}主题{/block}
 
+{block name="add"}
+    <a href="{:url('addLease')}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;我要租约</a>
+{/block}
+
 {block name="list"}
     <table class="table table-hover table-bordered">
         <tr class="info">
@@ -35,6 +39,7 @@
 				{eq name="$lease->canFinish()" value="1"}
 					<a class="btn btn-sm btn-primary" href="{:url('finishLease?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-pencil"></i> 提前结束</a>
 				{/eq}
+                <a class="btn btn-sm btn-primary" href="{:url('Check/participants?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-pencil"></i> 人员</a>
 				<a class="btn btn-sm btn-primary" href="{:url('editLease?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-pencil"></i> 编辑</a>
             	<a class="btn btn-danger btn-sm" href="{:url('deleteLease?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
         </tr>

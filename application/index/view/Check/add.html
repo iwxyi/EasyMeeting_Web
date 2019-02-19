@@ -1,0 +1,13 @@
+{extend name="edit_template" /}
+
+{block name="title"}手动添加与会人员{/block}
+
+{block name="content"}
+	<form action="{:url('inserts')}" method="post">
+		<input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}">
+		<label>请输入人员ID（多人空格分隔）</label>
+		<input type="text" name="user_ids" />
+		<br />
+		<button type="submit">添加</button>
+	</form>
+{/block}

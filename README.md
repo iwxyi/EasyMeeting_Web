@@ -119,13 +119,15 @@ Server运行环境：PHPStudy
 
 ## 签到表 check
 
-| 说明   | 字段名   | 类型    |      |
-| ------ | -------- | ------- | ---- |
-| 索引   | check_id | int     |      |
-| 租约号 | lease_id | int     |      |
-| 用户号 | user_id  | int     |      |
-| 已到   | checked  | boolean |      |
-| 离开   | leave    | boolean |      |
+| 说明     | 字段名      | 类型    |
+| -------- | ----------- | ------- |
+| 索引     | check_id    | int     |
+| 租约号   | lease_id    | int     |
+| 用户号   | user_id     | int     |
+| 已到     | checked     | boolean |
+| 离开     | leave       | boolean |
+| 创建时间 | create_time | bigint  |
+| 修改时间 | update_time | bigint  |
 
 
 
@@ -151,19 +153,31 @@ Server 端采用 ThinkPHP5.0 框架
 
 # jQuery框架
 
+Web 端交互采用 jQuery框架
+
 
 
 
 
 # MDUI框架
 
+Web 端主要 UI 采用 MDUI 框架
+
+# Boostrap框架
+
+Web 端表格、菜单等控件采用 Boostrap 框架
+
+
+
+# 会议室前端：Qt框架
+
+会议室桌面端 采用 Qt5.11.3(C++) 框架
+
+# 移动端：Android
 
 
 
 
-# Qt框架
-
-采用 Qt5.11.3 框架
 
 
 
