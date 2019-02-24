@@ -13,4 +13,9 @@ class Check extends Model
 		return $user;
 	}
 
+	public function Lease()
+	{
+		return $this->belongsTo('Lease');
+	}
+
 }

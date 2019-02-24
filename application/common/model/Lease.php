@@ -136,5 +136,30 @@ class Lease extends Model
 		return false;
 	}
 
+	public function toString()
+	{
+		$str = '<lease_id>' . $this->getData('lease_id') . '</lease_id>'
+			 . '<room_id>' . $this->getData('room_id') . '</room_id>'
+			 . '<admin_id>' . $this->getData('admin_id') . '</admin_id>'
+			 . '<room_name>' . $this->Room()->getData('name') . '</room_name>'
+			 . '<admin_name>' . $this->Admin()->getName() . '</admin_name>'
+			 . '<start_time>' . $this->getData('start_time') . '</start_time>'
+			 . '<finish_time>' . $this->getData('finish_time') . '</finish_time>'
+			 . '<theme>' . $this->getData('theme') . '</theme>'
+			 . '<usage>' . $this->getData('usage') . '</usage>'
+			 . '<message>' . $this->getData('message') . '</message>'
+			 . '<sweep>' . $this->getData('sweep') . '</sweep>'
+			 . '<entertain>' . $this->getData('entertain') . '</entertain>'
+			 . '<remote>' . $this->getData('remote') . '</remote>'
+			 . '<admin_score>' . $this->getData('admin_score') . '</admin_score>'
+			 . '<user_score>' . $this->getData('user_score') . '</user_score>'
+			 . '<credit_change>' . $this->getData('credit_change') . '</credit_change>'
+			 . '<create_time>' . $this->getData('create_time') . '</create_time>'
+			 . '<update_time>' . $this->getData('update_time') . '</update_time>';
+		$str = "<lease>" . $str . "</lease>";
+
+		return $str;
+	}
+
 
 }
