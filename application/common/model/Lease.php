@@ -88,7 +88,7 @@ class Lease extends Model
 		$hour = (int)date('H', $date);
 		$minute = (int)date('i', $date);
 
-		// 设置成整点
+		// 设置成下一个整点
 		$date += 60 * (60 - $minute);
 		$minute = 0;
 		$hour++;
@@ -97,6 +97,7 @@ class Lease extends Model
 		$hour++;
 		$date += 3600 * 1;
 
+		// 判断是否符合开会的时间
 		if ($hour >= 10 && $hour <= 14)
 		{
 			$date += 3600 * (14 - $hour);
@@ -109,9 +110,10 @@ class Lease extends Model
 		}
 		else if ($hour >=  20 && $hour < 24) // 晚上
 		{
-			$date += 3600 * (24-$hour+8); // 设置为明天这个点
-			if ($minute == 30)
-				$date -= 60 * 30;
+			$date += 3600 * (24-$hour+8); // 设置为明早8点
+			/*if ($minute == 30) // 暂时用不到了
+				$date -= 60 * 30;*/
+			$hour = 8;
 		}
 		else if ($hour >= 24)  // 23:?? ，设置为明早8点
 		{
