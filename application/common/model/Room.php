@@ -50,7 +50,7 @@ class Room extends Model
 
 		$count = count($free_rooms);
 
-		$index = rand(0, $count);
+		$index = rand(0, $count-1);
 
 		return $free_rooms[$index]->getData('room_id');
 	}
