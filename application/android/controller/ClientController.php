@@ -226,6 +226,13 @@ class ClientController extends Controller
 
 	public function deleteLease()
 	{
+		$lease_id = Request::instance()->param('lease_id/d');
+		$lease = Lease::get($lease_id);
 
+		if (is_null($lease))
+			return '<result>未能获取到订单ID</result>';
+		if (!$lease->delete())
+			return '<result>删除失败' . $lease->getError() . '</result>';
+		return "<result>OK</result>";
 	}
 }
