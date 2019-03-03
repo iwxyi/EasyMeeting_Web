@@ -140,6 +140,9 @@ class Lease extends Model
 
 	public function toString()
 	{
+		$Check = new Check;
+		$num = $Check->where('lease_id', $this->getData('lease_id'))->count();
+
 		$str = '<lease_id>' . $this->getData('lease_id') . '</lease_id>'
 			 . '<room_id>' . $this->getData('room_id') . '</room_id>'
 			 . '<admin_id>' . $this->getData('admin_id') . '</admin_id>'
@@ -147,6 +150,7 @@ class Lease extends Model
 			 . '<admin_name>' . $this->Admin()->getName() . '</admin_name>'
 			 . '<start_time>' . $this->getData('start_time') . '</start_time>'
 			 . '<finish_time>' . $this->getData('finish_time') . '</finish_time>'
+			 . '<num>' . $num . '</num>'
 			 . '<theme>' . $this->getData('theme') . '</theme>'
 			 . '<usage>' . $this->getData('usage') . '</usage>'
 			 . '<message>' . $this->getData('message') . '</message>'

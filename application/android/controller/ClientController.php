@@ -133,11 +133,11 @@ class ClientController extends Controller
 		$params = Request::instance()->param();
 
 		if (isset($params['start_time']))
-			$lease->start_time = strtotime($params['start_time']);
+			$lease->start_time = $params['start_time'];
 		else
 			$lease->start_time = 0;
 		if (isset($params['end_time']))
-			$lease->end_time = strtotime($params['end_time']);
+			$lease->end_time = $params['end_time'];
 		else
 			$lease->end_time = 0;
 		if (isset($params['finish_time']))
@@ -178,9 +178,50 @@ class ClientController extends Controller
 		}
 	}
 
-	public function updateLeaseInfo()
+	public function updateLease()
 	{
+		$params = Request::instance()->param();
+		$lease_id = $params['lease_id'];
+		$lease = Lease::get($lease_id);
+		if (!is_null($lease)) {
+			
+			$lease->room_id = $params['room_id'];
+			$lease->admin_id = $params['admin_id'];
+			$lease->user_id = $params['user_id'];
+			
+			$lease->theme = $params['theme'];
+			$lease->usage = $params['usage'];
+			$lease->message = $params['message'];
 
+			if (isset($params['sweep']))
+				$lease->sweep = true;
+			else
+				$lease->sweep = false;
+			if (isset($params['entertain']))
+				$lease->entertain = true;
+			else
+				$lease->entertain = false;
+			if (isset($params['remote']))
+				$lease->remote = true;
+			else
+				$lease->remote = false;
+
+			if (isset($params['start_time']))
+				$lease->start_time = $params['start_time'];
+			else
+				$lease->start_time = 0;
+			if (isset($params['finish_time']))
+				$lease->finish_time = $params['finish_time'];
+			else
+				$lease->finish_time = $lease->start_time+7200000;
+
+			$state = $lease->validate(true)->save();
+			if ($state) {
+				return "<result>OK</result>";
+			} else {
+				return "<result>更新失败" . $lease->getError() . "</result>";
+			}
+		}
 	}
 
 	public function deleteLease()
