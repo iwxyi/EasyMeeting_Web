@@ -2,49 +2,36 @@
 
 {block name="title"}新增管理员{/block}
 
+{block name="post_url"}{:url('insert')}{/block}
+
 {block name="content"}
-    <form action="{:url('insert')}" method="post">
-        <div class="mdui-card-media">
-            <img src="__STATIC__/view/img/login_card.jpg"/>
-            <div class="mdui-card-media-covered">
-                <div class="mdui-card-primary">
-                    <div class="mdui-card-primary-title">智能会议室管理系统</div>
-                    <div class="mdui-card-primary-subtitle">by 《两男三女》团队</div>
-                </div>
-            </div>
+    <div class="mdui-card-content">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">管理员账号</label>
+            <input class="mdui-textfield-input" type="text" name="username" id="username"/>
         </div>
-        <div style="padding: 10px;">
-
-            <div class="mdui-card-content">
-                <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">管理员账号</label>
-                    <input class="mdui-textfield-input" type="text" name="username" id="username"/>
-                </div>
-                <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">密码</label>
-                    <input class="mdui-textfield-input" type="text" name="password" id="password"/>
-                </div>
-                <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">昵称（可空）</label>
-                    <input class="mdui-textfield-input" type="text" name="nickname" id="nickname"/>
-                </div>
-            </div>
-
-            <div class="mdui-chip">
-                <span class="mdui-chip-title">管理员权限</span>
-            </div>
-            <select name="permission" class="mdui-select" mdui-select>
-                <option value="0">只读</option>
-                <option value="1" selected>允许修改</option>
-                <option value="2">允许删除</option>
-                <option value="9">完整权限</option>
-            </select><br />
-
-            <!-- 卡片的按钮 -->
-            <div class="mdui-card-actions">
-                <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">添加管理员</button>
-            </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">密码</label>
+            <input class="mdui-textfield-input" type="text" name="password" id="password"/>
         </div>
-、
-    </form>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">昵称（可空）</label>
+            <input class="mdui-textfield-input" type="text" name="nickname" id="nickname"/>
+        </div>
+    </div>
+
+    <div class="mdui-chip">
+        <span class="mdui-chip-title">管理员权限</span>
+    </div>
+    <select name="permission" class="mdui-select" mdui-select>
+        <option value="0">只读</option>
+        <option value="1" selected>允许修改</option>
+        <option value="2">允许删除</option>
+        <option value="9">完整权限</option>
+    </select><br />
+
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+        <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">添加管理员</button>
+    </div>
 {/block}

@@ -2,51 +2,37 @@
 
 {block name="title"}编辑管理员{/block}
 
+{block name="post_url"}{:url('update')}{/block}
+
 {block name="content"}
-    <form action="{:url('update')}" method="post">
-        <input type="hidden" name="admin_id" value="{$Admin->getData('admin_id')}" />
-
-        <div class="mdui-card-media">
-            <img src="__STATIC__/view/img/login_card.jpg"/>
-            <div class="mdui-card-media-covered">
-                <div class="mdui-card-primary">
-                    <div class="mdui-card-primary-title">智能会议室管理系统</div>
-                    <div class="mdui-card-primary-subtitle">by 《两男三女》团队</div>
-                </div>
-            </div>
+    <input type="hidden" name="admin_id" value="{$Admin->getData('admin_id')}">
+    <div class="mdui-card-content">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">管理员账号</label>
+            <input class="mdui-textfield-input" type="text" name="username" id="username" value="{$Admin->getData('username')}"/>
         </div>
-        <div style="padding: 10px;">
-
-            <div class="mdui-card-content">
-                <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">管理员账号</label>
-                    <input class="mdui-textfield-input" type="text" name="username" id="username" value="{$Admin->getData('username')}"/>
-                </div>
-                <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">密码</label>
-                    <input class="mdui-textfield-input" type="text" name="password" id="password" value="{$Admin->getData('password')}"/>
-                </div>
-                <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">昵称（可空）</label>
-                    <input class="mdui-textfield-input" type="text" name="nickname" id="nickname" value="{$Admin->getData('nickname')}"/>
-                </div>
-            </div>
-
-            <div class="mdui-chip">
-                <span class="mdui-chip-title">管理员权限</span>
-            </div>
-            <select name="permission" class="mdui-select" mdui-select>
-                <option value="0" {eq name="$Admin->getData('permission')" value="0"}selected="selected"{/eq}>只读</option>
-                <option value="1" {eq name="$Admin->getData('permission')" value="1"}selected="selected"{/eq}>允许修改</option>
-                <option value="2" {eq name="$Admin->getData('permission')" value="2"}selected="selected"{/eq}>允许删除</option>
-                <option value="9" {eq name="$Admin->getData('permission')" value="9"}selected="selected"{/eq}>完整权限</option>
-            </select><br />
-
-            <!-- 卡片的按钮 -->
-            <div class="mdui-card-actions">
-                <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">保存</button>
-            </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">密码</label>
+            <input class="mdui-textfield-input" type="text" name="password" id="password" value="{$Admin->getData('password')}"/>
         </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">昵称（可空）</label>
+            <input class="mdui-textfield-input" type="text" name="nickname" id="nickname" value="{$Admin->getData('nickname')}"/>
+        </div>
+    </div>
 
-    </form>
+    <div class="mdui-chip">
+        <span class="mdui-chip-title">管理员权限</span>
+    </div>
+    <select name="permission" class="mdui-select" mdui-select>
+        <option value="0" {eq name="$Admin->getData('permission')" value="0"}selected="selected"{/eq}>只读</option>
+        <option value="1" {eq name="$Admin->getData('permission')" value="1"}selected="selected"{/eq}>允许修改</option>
+        <option value="2" {eq name="$Admin->getData('permission')" value="2"}selected="selected"{/eq}>允许删除</option>
+        <option value="9" {eq name="$Admin->getData('permission')" value="9"}selected="selected"{/eq}>完整权限</option>
+    </select><br />
+
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+        <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">保存</button>
+    </div>
 {/block}

@@ -2,38 +2,27 @@
 
 {block name="title"}用户注册{/block}
 
-{block name="content"}
-    <form action="{:url('userAdd')}" method="post">
-        <div class="mdui-card-media">
-            <img src="__STATIC__/view/img/login_card.jpg"/>
-            <div class="mdui-card-media-covered">
-                <div class="mdui-card-primary">
-                    <div class="mdui-card-primary-title">智能会议室管理系统</div>
-                    <div class="mdui-card-primary-subtitle">by 《两男三女》团队</div>
-                </div>
-            </div>
-        </div>
+{block name="post_url"}{:url('userAdd')}{/block}
 
-        <div class="mdui-card-content">
-            <div class="mdui-textfield mdui-textfield-floating-label">
-                <label class="mdui-textfield-label">用户名</label>
-                <input class="mdui-textfield-input" type="text" name="username" id="username"/>
-            </div>
-            <div class="mdui-textfield mdui-textfield-floating-label">
-                <label class="mdui-textfield-label">密码</label>
-                <input class="mdui-textfield-input" type="text" name="password" id="password"/>
-            </div>
-            <div class="mdui-textfield mdui-textfield-floating-label">
-                <label class="mdui-textfield-label">昵称</label>
-                <input class="mdui-textfield-input" type="text" name="nickname" id="nickname"/>
-            </div>
+{block name="content"}】
+    <div class="mdui-card-content">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">用户名</label>
+            <input class="mdui-textfield-input" type="text" name="username" id="username"/>
         </div>
-
-        <!-- 卡片的按钮 -->
-        <div class="mdui-card-actions">
-            <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">注册</button>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">密码</label>
+            <input class="mdui-textfield-input" type="text" name="password" id="password"/>
         </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">昵称</label>
+            <input class="mdui-textfield-input" type="text" name="nickname" id="nickname"/>
+        </div>
+    </div>
 
-    </form>
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+        <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">注册</button>
+    </div>
 
 {/block}

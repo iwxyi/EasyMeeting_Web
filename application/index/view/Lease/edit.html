@@ -2,104 +2,90 @@
 
 {block name="title"}编辑租约订单{/block}
 
+{block name="post_url"}{:url('update')}{/block]}
+
 {block name="content"}
+    <input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}" />
 
-    <form action="{:url('update')}" method="post">
-        <input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}" />
+    <div class="mdui-chip">
+        <span class="mdui-chip-title">租借会议室</span>
+    </div>
+    <select class="mdui-select" mdui-select name="room_id">
+        {volist name="$rooms" id="room"}
+            <option value="{$room->getData('room_id')}"
+                {eq name="$lease->getData('room_id')" value="$room->getData('room_id')"}
+                    selected="selected"
+                {/eq}
+            >{$room->getData('name')}</option>
+        {/volist}
+    </select><br />
+    <label>设置负责人:</label>
+    <select class="mdui-select" mdui-select name="admin_id">
+        {volist name="$admins" id="admin"}
+            <option value="{$admin->getData('admin_id')}"
+                {eq name="$lease->getData('admin_id')" value="$admin->getData('admin_id')"}
+                    selected="selected"
+                {/eq}
+            >{$admin->getName()}</option>
+        {/volist}
+    </select><br />
+    <label>租借的用户:</label>
+    <select class="mdui-select" mdui-select name="user_id">
+        {volist name="$users" id="user"}
+            <option value="{$user->getData('user_id')}"
+                {eq name="$lease->getData('user_id')" value="$user->getData('user_id')" }
+                    selected="selected"
+                {/eq}
+            >{$user->getData('nickname')}</option>
+        {/volist}
+    </select><br />
 
-        <div class="mdui-card-media">
-            <img src="__STATIC__/view/img/login_card.jpg"/>
-            <div class="mdui-card-media-covered">
-                <div class="mdui-card-primary">
-                    <div class="mdui-card-primary-title">智能会议室管理系统</div>
-                    <div class="mdui-card-primary-subtitle">by 《两男三女》团队</div>
-                </div>
-            </div>
-        </div>
+    <div class="mdui-chip">
+        <span class="mdui-chip-title"> 开 始 时 间 </span>
+    </div>
+    <input type="datetime-local" name="start_time" value="{$start_time}" /> <br />
 
-        <div style="padding: 10px;">
-            <div class="mdui-chip">
-                <span class="mdui-chip-title">租借会议室</span>
-            </div>
-            <select class="mdui-select" mdui-select name="room_id">
-                {volist name="$rooms" id="room"}
-                    <option value="{$room->getData('room_id')}"
-                        {eq name="$lease->getData('room_id')" value="$room->getData('room_id')"}
-                            selected="selected"
-                        {/eq}
-                    >{$room->getData('name')}</option>
-                {/volist}
-            </select><br />
-            <label>设置负责人:</label>
-            <select class="mdui-select" mdui-select name="admin_id">
-                {volist name="$admins" id="admin"}
-                    <option value="{$admin->getData('admin_id')}"
-                        {eq name="$lease->getData('admin_id')" value="$admin->getData('admin_id')"}
-                            selected="selected"
-                        {/eq}
-                    >{$admin->getName()}</option>
-                {/volist}
-            </select><br />
-            <label>租借的用户:</label>
-            <select class="mdui-select" mdui-select name="user_id">
-                {volist name="$users" id="user"}
-                    <option value="{$user->getData('user_id')}"
-                        {eq name="$lease->getData('user_id')" value="$user->getData('user_id')" }
-                            selected="selected"
-                        {/eq}
-                    >{$user->getData('nickname')}</option>
-                {/volist}
-            </select><br />
+    <div class="mdui-chip">
+        <span class="mdui-chip-title"> 结 束 时 间 </span>
+    </div>
+    <input type="datetime-local" name="finish_time" value="{$finish_time}" /> <br />
 
-            <div class="mdui-chip">
-                <span class="mdui-chip-title"> 开 始 时 间 </span>
-            </div>
-            <input type="datetime-local" name="start_time" value="{$start_time}" /> <br />
+    <div class="mdui-textfield">
+        <label class="mdui-textfield-label">主题</label>
+        <input class="mdui-textfield-input" type="text" name="theme" value="{$lease->getData('theme')}" />
+    </div>
+    <div class="mdui-textfield">
+        <label class="mdui-textfield-label">用途</label>
+        <input class="mdui-textfield-input" type="text" name="usage" value="{$lease->getData('usage')}" />
+    </div>
+    <div class="mdui-textfield">
+        <label class="mdui-textfield-label">留言</label>
+        <input class="mdui-textfield-input" type="text" name="message" value="{$lease->getData('message')}" />
+    </div>
 
-            <div class="mdui-chip">
-                <span class="mdui-chip-title"> 结 束 时 间 </span>
-            </div>
-            <input type="datetime-local" name="finish_time" value="{$finish_time}" /> <br />
+    <label class="mdui-checkbox">
+        <input type="checkbox" name="sweep"
+        {eq name="$lease->getData('sweep')" value="1" }
+            checked="checked"
+        {/eq} />
+        <i class="mdui-checkbox-icon"></i> 场地清理服务
+    </label><br />
+    <label class="mdui-checkbox">
+        <input type="checkbox" name="entertain" {eq name="$lease->getData('entertain')" value="1" }
+            checked="checked"
+        {/eq} />
+        <i class="mdui-checkbox-icon"></i> 现场招待服务
+    </label><br />
+    <label class="mdui-checkbox">
+        <input type="checkbox" name="remote"
+        {eq name="$lease->getData('remote')" value="1" }
+            checked="checked"
+        {/eq} />
+        <i class="mdui-checkbox-icon"></i> 远程视频服务
+    </label><br />
 
-            <div class="mdui-textfield">
-                <label class="mdui-textfield-label">主题</label>
-                <input class="mdui-textfield-input" type="text" name="theme" value="{$lease->getData('theme')}" />
-            </div>
-            <div class="mdui-textfield">
-                <label class="mdui-textfield-label">用途</label>
-                <input class="mdui-textfield-input" type="text" name="usage" value="{$lease->getData('usage')}" />
-            </div>
-            <div class="mdui-textfield">
-                <label class="mdui-textfield-label">留言</label>
-                <input class="mdui-textfield-input" type="text" name="message" value="{$lease->getData('message')}" />
-            </div>
-
-            <label class="mdui-checkbox">
-                <input type="checkbox" name="sweep"
-                {eq name="$lease->getData('sweep')" value="1" }
-                    checked="checked"
-                {/eq} />
-                <i class="mdui-checkbox-icon"></i> 场地清理服务
-            </label><br />
-            <label class="mdui-checkbox">
-                <input type="checkbox" name="entertain" {eq name="$lease->getData('entertain')" value="1" }
-                    checked="checked"
-                {/eq} />
-                <i class="mdui-checkbox-icon"></i> 现场招待服务
-            </label><br />
-            <label class="mdui-checkbox">
-                <input type="checkbox" name="remote"
-                {eq name="$lease->getData('remote')" value="1" }
-                    checked="checked"
-                {/eq} />
-                <i class="mdui-checkbox-icon"></i> 远程视频服务
-            </label><br />
-        </div>
-
-        <!-- 卡片的按钮 -->
-        <div class="mdui-card-actions">
-            <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">保存</button>
-        </div>
-    </form>
-
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+        <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">保存</button>
+    </div>
 {/block}

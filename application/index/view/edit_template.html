@@ -10,8 +10,20 @@
 
 <body>
     <div class="mdui-card" style="width:350px;margin:0 auto;margin-top: 100px;">
-        {block name="content"}
-        {/block}
+    	<form action="{block name="post_url"}{/block}" method="post">
+    		<div class="mdui-card-media">
+	            <img src="__STATIC__/view/img/login_card.jpg"/>
+	            <div class="mdui-card-media-covered">
+	                <div class="mdui-card-primary">
+	                    <div class="mdui-card-primary-title">智能会议室管理系统</div>
+	                    <div class="mdui-card-primary-subtitle">by 《两男三女》团队</div>
+	                </div>
+	            </div>
+	        </div>
+	        <div style="padding: 10px;">
+		        {block name="content"}{/block}
+		    </div>
+	    </form>
     </div>
 </body>
 

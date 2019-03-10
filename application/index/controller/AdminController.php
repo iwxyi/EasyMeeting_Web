@@ -86,7 +86,7 @@ class AdminController extends Controller
 
 			// 反馈结果
 			if ($state == true)
-				$message = '添加成功' . $Admin->username . '成功，ID为：' . $Admin->admin_id;
+				$message = '添加' . $Admin->username . '成功，ID为：' . $Admin->admin_id;
 			else
 				return $this->error('添加失败' . $Admin->getError(), url('all'));
 		} catch (\Exception $e) {

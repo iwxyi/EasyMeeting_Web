@@ -2,36 +2,24 @@
 
 {block name="title"}登录{/block}
 
+{block name="post_url"}{:url('login')}{/block}
+
 {block name="content"}
-
-    <form action="{:url('login')}" method="post">
-        <div class="mdui-card-media">
-            <img src="__STATIC__/view/img/login_card.jpg"/>
-            <div class="mdui-card-media-covered">
-                <div class="mdui-card-primary">
-                    <div class="mdui-card-primary-title">智能会议室管理系统</div>
-                    <div class="mdui-card-primary-subtitle">by 《两男三女》团队</div>
-                </div>
-            </div>
+    <div class="mdui-card-content">
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">用户名</label>
+            <input class="mdui-textfield-input" type="text" name="username" id="username"/>
         </div>
-
-        <div class="mdui-card-content">
-            <div class="mdui-textfield mdui-textfield-floating-label">
-                <label class="mdui-textfield-label">用户名</label>
-                <input class="mdui-textfield-input" type="text" name="username" id="username"/>
-            </div>
-            <div class="mdui-textfield mdui-textfield-floating-label">
-                <label class="mdui-textfield-label">密码</label>
-                <input class="mdui-textfield-input" type="text" name="password" id="password"/>
-            </div>
+        <div class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">密码</label>
+            <input class="mdui-textfield-input" type="text" name="password" id="password"/>
         </div>
+    </div>
 
-        <!-- 卡片的按钮 -->
-        <div class="mdui-card-actions">
-            <button class="mdui-btn mdui-ripple mdui-float-left" type="submit">登录</button>
-            <button class="mdui-btn mdui-ripple mdui-float-right" type="submit" name='register'>注册</button>
-        </div>
-
-    </form>
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+        <button class="mdui-btn mdui-ripple mdui-float-left" type="submit">登录</button>
+        <button class="mdui-btn mdui-ripple mdui-float-right" type="submit" name='register'>注册</button>
+    </div>
 
 {/block}
