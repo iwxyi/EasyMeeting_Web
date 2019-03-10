@@ -4,43 +4,87 @@
 
 {block name="content"}
     <form action="{:url('insert')}" method="post">
-        <label>租借会议室:</label>
-        <select name="room_id">
-            <option value="0" selected="selected">智能分配（推荐）</option>
-            {volist name="$rooms" id="room"}
-                <option value="{$room->getData('room_id')}">{$room->getData('name')}</option>
-            {/volist}
-        </select><br />
-        <label>设置负责人:</label>
-        <select name="admin_id">
-            <option value="0" selected="selected">会议室默认管理员</option>
-            {volist name="$admins" id="admin"}
-                <option value="{$admin->getData('admin_id')}">{$admin->getName()}</option>
-            {/volist}
-        </select><br />
-        <label>租借的用户:</label>
-        <select name="user_id">
-            {volist name="$users" id="user"}
-                <option value="{$user->getData('user_id')}">{$user->getData('nickname')}</option>
-            {/volist}
-        </select><br />
 
-        <label for="start_time">开始时间：</label>
-        <input type="datetime-local" name="start_time" value="{$start_time}" /> <br />
-        <label for="finish_time">结束时间：</label>
-        <input type="datetime-local" name="finish_time" value="{$finish_time}" /> <br />
+        <div class="mdui-card-media">
+            <img src="__STATIC__/view/img/login_card.jpg"/>
+            <div class="mdui-card-media-covered">
+                <div class="mdui-card-primary">
+                    <div class="mdui-card-primary-title">智能会议室管理系统</div>
+                    <div class="mdui-card-primary-subtitle">by 《两男三女》团队</div>
+                </div>
+            </div>
+        </div>
 
-        <label for="theme">主题：</label>
-        <input type="text" name="theme" /> <br />
-        <label for="usage">用途：</label>
-        <input type="text" name="usage" /> <br />
-        <label for="message">留言：</label>
-        <input type="text" name="message" /> <br />
+        <div style="padding: 10px;">
+            <div class="mdui-chip">
+                <span class="mdui-chip-title">租借会议室</span>
+            </div>
+            <select class="mdui-select" mdui-select name="room_id">
+                <option value="0" selected="selected">智能分配（推荐）</option>
+                {volist name="$rooms" id="room"}
+                    <option value="{$room->getData('room_id')}">{$room->getData('name')}</option>
+                {/volist}
+            </select><br />
 
-        <input type="checkbox" name="sweep" checked="checked" /> 场地清理服务<br />
-        <input type="checkbox" name="entertain" /> 现场招待服务<br />
-        <input type="checkbox" name="entertain" /> 远程视频服务<br />
+            <div class="mdui-chip">
+                <span class="mdui-chip-title">设置负责人</span>
+            </div>
+            <select class="mdui-select" mdui-select name="admin_id">
+                <option value="0" selected="selected">会议室默认管理员</option>
+                {volist name="$admins" id="admin"}
+                    <option value="{$admin->getData('admin_id')}">{$admin->getName()}</option>
+                {/volist}
+            </select><br />
 
-        <button type="submit">添加</button>
+            <div class="mdui-chip">
+                <span class="mdui-chip-title">租借的用户</span>
+            </div>
+            <select class="mdui-select" mdui-select name="user_id">
+                {volist name="$users" id="user"}
+                    <option value="{$user->getData('user_id')}">{$user->getData('nickname')}</option>
+                {/volist}
+            </select><br />
+
+            <div class="mdui-chip">
+                <span class="mdui-chip-title"> 开 始 时 间 </span>
+            </div>
+            <input type="datetime-local" name="start_time" value="{$start_time}" /> <br />
+
+            <div class="mdui-chip">
+                <span class="mdui-chip-title"> 结 束 时 间 </span>
+            </div>
+            <input type="datetime-local" name="finish_time" value="{$finish_time}" /> <br />
+
+            <div class="mdui-textfield">
+                <label class="mdui-textfield-label">主题</label>
+                <input class="mdui-textfield-input" type="text" name="theme" />
+            </div>
+            <div class="mdui-textfield">
+                <label class="mdui-textfield-label">用途</label>
+                <input class="mdui-textfield-input" type="text" name="usage" />
+            </div>
+            <div class="mdui-textfield">
+                <label class="mdui-textfield-label">留言</label>
+                <input class="mdui-textfield-input" type="text" name="message" />
+            </div>
+
+            <label class="mdui-checkbox">
+                <input type="checkbox" name="sweep" checked/>
+                <i class="mdui-checkbox-icon"></i> 场地清理服务
+            </label><br />
+            <label class="mdui-checkbox">
+                <input type="checkbox" name="entertain" checked/>
+                <i class="mdui-checkbox-icon"></i> 现场招待服务
+            </label><br />
+            <label class="mdui-checkbox">
+                <input type="checkbox" name="remote" checked/>
+                <i class="mdui-checkbox-icon"></i> 远程视频服务
+            </label><br />
+        </div>
+
+        <!-- 卡片的按钮 -->
+        <div class="mdui-card-actions">
+            <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">添加</button>
+        </div>
     </form>
 {/block}

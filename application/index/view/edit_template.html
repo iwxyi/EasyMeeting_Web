@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{block name="title"}编辑{/block}</title>
+    <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.2/css/mdui.min.css">
+	<script src="//cdnjs.loli.net/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
 </head>
 
-<body class="contanier">
-    <div class="row">
-        <div class="col-md-12">
-            {block name="content"}
-            {/block}
-        </div>
+<body>
+    <div class="mdui-card" style="width:350px;margin:0 auto;margin-top: 100px;">
+        {block name="content"}
+        {/block}
     </div>
 </body>
 
