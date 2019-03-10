@@ -5,16 +5,42 @@
 {block name="content"}
     <form action="{:url('update')}" method="post">
         <input type="hidden" name="room_id" value="{$Room->getData('room_id')}" />
-        <label>管理员:</label>
-        <select name="admin_id">
-            {volist name="$Room->Admin->select()" id="admin"}
-                <option value="{$admin->getData('admin_id')}" {eq name="$admin->getData('admin_id')" value="$admin->getData('admin_id')"}selected="selected"{/eq}>{$admin->getName()}</option>
-            {/volist}
-        </select><br />
-        <label>名称:</label>
-        <input type="text" name="name" value="{$Room->getData('name')}" /><br />
-        <label>标准人数:</label>
-        <input type="text" name="max" value="{$Room->getData('max')}" /><br />
-        <button type="submit">保存</button>
+        <div class="mdui-card-media">
+            <img src="__STATIC__/view/img/login_card.jpg"/>
+            <div class="mdui-card-media-covered">
+                <div class="mdui-card-primary">
+                    <div class="mdui-card-primary-title">智能会议室管理系统</div>
+                    <div class="mdui-card-primary-subtitle">by 《两男三女》团队</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding: 10px;">
+
+            <div class="mdui-chip">
+                <span class="mdui-chip-title">管理员</span>
+            </div>
+            <select name="admin_id" class="mdui-select" mdui-select>
+                {volist name="$Room->Admin->select()" id="admin"}
+                    <option value="{$admin->getData('admin_id')}" {eq name="$admin->getData('admin_id')" value="$admin->getData('admin_id')"}selected="selected"{/eq} >{$admin->getName()}</option>
+                {/volist}
+            </select><br />
+
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">会议室名称</label>
+                <input class="mdui-textfield-input" type="text" name="name" value="{$Room->getData('name')}" />
+            </div>
+
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">最大人数</label>
+                <input class="mdui-textfield-input" type="text" name="max"  value="{$Room->getData('max')}" />
+            </div>
+
+            <!-- 卡片的按钮 -->
+            <div class="mdui-card-actions">
+                <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">添加会议室</button>
+            </div>
+        </div>
+
     </form>
 {/block}
