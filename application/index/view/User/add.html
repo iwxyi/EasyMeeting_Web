@@ -13,11 +13,24 @@
                 </div>
             </div>
         </div>
-        <label>账号:</label>
-        <input type="text" name="username" /><br />
-        <label>密码:</label>
-        <input type="text" name="password" /><br />
-        <label>昵称:</label>                <input type="text" name="nickname" /><br />
-        <button type="submit">添加</button>
+        <div class="mdui-card-content">
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">用户名</label>
+                <input class="mdui-textfield-input" type="text" name="username"/>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">密码</label>
+                <input class="mdui-textfield-input" type="text" name="password"/>
+            </div>
+            <div class="mdui-textfield mdui-textfield-floating-label">
+                <label class="mdui-textfield-label">昵称</label>
+                <input class="mdui-textfield-input" type="text" name="nickname"/>
+            </div>
+        </div>
+
+        <!-- 卡片的按钮 -->
+        <div class="mdui-card-actions">
+            <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">添加用户</button>
+        </div>
     </form>
 {/block}
