@@ -69,6 +69,11 @@ class UserController extends Controller
 		// 获取关键字。不能用 ->get()，因为使用了助手函数，URL不是get
 		$user_id = Request::instance()->param('user_id/d'); // '/d' 转换成整数型
 
+		if ($user_id == 1)
+		{
+			return $this->error('1号用户不允许删除', Request::instance()->header('referer'));
+		}
+
 		// 获取要删除的对象
 		$User = User::get($user_id);
 
@@ -79,6 +84,8 @@ class UserController extends Controller
 		// 删除对象
 		if (!$User->delete())
 			return $this->error('删除失败' . $User->getError(), Request::instance()->header('referer'));
+
+		$User->execute("update lease set user_id = 1 where user_id = '$user_id'");
 
 		// 进行跳转
 		return $this->success('删除' . $User->username . '(' . $User->nickname . ')' . '成功', Request::instance()->header('referer')); // 返回到上一个网址

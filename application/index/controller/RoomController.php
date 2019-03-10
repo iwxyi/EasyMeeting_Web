@@ -108,11 +108,18 @@ class RoomController extends Controller
 		$room_id = Request::instance()->param('room_id/d');
 		$room = Room::get($room_id);
 
+		if ($room_id == 1)
+		{
+			return $this->error('1号房间不允许删除', Request::instance()->header('referer'));
+		}
+
 		if (is_null($room))
 			return $this->error('未获取到会议室ID', Request::instance()->header('referer'));
 		
 		if (!$room->delete())
 			return $this->error('删除失败' . $room->getError(), Request::instance()->header('referer'));
+
+		$room->execute("update lease set room_id = 1 where room_id = '$room_id'");
 
 		return $this->success('删除会议室：' . $room->getData('name') . ' 成功', url('index'));
 	}

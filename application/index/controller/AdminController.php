@@ -2,6 +2,7 @@
 namespace app\index\controller;
 use think\Controller;
 use think\Request;
+use think\Model;
 use app\common\model\Admin;
 
 class AdminController extends Controller
@@ -102,6 +103,10 @@ class AdminController extends Controller
 			// 获取关键字。不能用 ->get()，因为使用了助手函数，URL不是get
 			$admin_id = Request::instance()->param('admin_id/d'); // '/d' 转换成整数型
 
+			if ($admin_id == 1) {
+				throw new \Exception("不能删除主管理员", 1);
+			}
+
 			// 获取要删除的对象
 			$Admin = Admin::get($admin_id);
 
@@ -112,6 +117,10 @@ class AdminController extends Controller
 			// 删除对象
 			if (!$Admin->delete())
 				throw new \Exception('删除失败' . $Admin->getError(), 1);
+
+			// 修改外键关联的记录
+			$Admin->execute("update lease set admin_id = 1 where admin_id = '$admin_id'");
+			$Admin->execute("update room set admin_id = 1 where admin_id = '$admin_id'");
 
 			// 进行跳转
 			return $this->success('删除' . $Admin->username . '(' . $Admin->nickname . ')' . '成功', Request::instance()->header('referer')); // 返回到上一个网址
