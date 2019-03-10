@@ -5,26 +5,27 @@
 {block name="search_placeholder"}房间名{/block}
 
 {block name="list"}
-    <table class="table table-hover table-bordered">
-        <tr class="info">
-            <th>序号</th>
-            <th>房间名</th>
-            <th>管理员</th>
-            <th>标准人数</th>
-            <th>价格</th>
-            <th>操作</th>
-        </tr>
-        {volist name="rooms" id="room" key="key"}
-        <tr>
-            <td>{$room->getData('room_id')}</td>
-            <td>{$room->getData('name')}</td>
-            <td>{$room->Admin->getName()}</td>
-            <td>{$room->getData('max')}</td>
-            <td>{$room->getData('price')}</td>
-            <td><a class="btn btn-sm btn-primary" href="{:url('edit?room_id=' . $room->getData('room_id'))}"><i class="glyphicon glyphicon-pencil"></i> 编辑</a>
-            	<a class="btn btn-danger btn-sm" href="{:url('delete?room_id=' . $room->getData('room_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
-        </tr>
-        {/volist}
-    </table>
+    <tr class="info">
+        <th>序号</th>
+        <th>房间名</th>
+        <th>管理员</th>
+        <th>标准人数</th>
+        <th>价格</th>
+        <th>操作</th>
+    </tr>
+    {volist name="rooms" id="room" key="key"}
+    <tr>
+        <td>{$room->getData('room_id')}</td>
+        <td>{$room->getData('name')}</td>
+        <td>{$room->Admin->getName()}</td>
+        <td>{$room->getData('max')}</td>
+        <td>{$room->getData('price')}</td>
+        <td><a class="btn btn-sm btn-primary" href="{:url('edit?room_id=' . $room->getData('room_id'))}"><i class="glyphicon glyphicon-pencil"></i> 编辑</a>
+        	<a class="btn btn-danger btn-sm" href="{:url('delete?room_id=' . $room->getData('room_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
+    </tr>
+    {/volist}
+{/block}
+
+{block name="render"}
     {$rooms->render()}
 {/block}

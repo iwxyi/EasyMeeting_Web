@@ -14,7 +14,6 @@
         <th>结束时间</th>
         <th>会议主题</th>
         <th>用途</th>
-        <th>留言</th>
         <th>清理</th>
         <th>招待</th>
         <th>远程</th>
@@ -29,9 +28,8 @@
 		<td>{$lease->User()->getData('nickname')}</td>
 		<td>{$lease->getStartTimeShowed()}</td>
 		<td>{$lease->getFInishTimeShowed()}</td>
-		<td>{$lease->getData('theme')}</td>
+		<td title="{$lease->getData('message')}">{$lease->getData('theme')}</td>
 		<td>{$lease->getData('usage')}</td>
-		<td>{$lease->getData('message')}</td>
 		<td>{$lease->sweep}</td>
 		<td>{$lease->entertain}</td>
 		<td>{$lease->remote}</td>
@@ -40,7 +38,6 @@
         	<a class="btn btn-danger btn-sm" href="{:url('delete?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
     </tr>
     {/volist}
-	
 {/block}
 
 {block name="render"}

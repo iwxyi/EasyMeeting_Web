@@ -5,26 +5,26 @@
 {block name="search_placeholder"}昵称/账号{/block}
 
 {block name="list"}
-    <table class="table table-hover table-bordered">
-        <tr class="info">
-            <th>序号</th>
-            <th>账号</th>
-            <th>密码</th>
-            <th>昵称</th>
-            <th>信用度</th>
-            <th>操作</th>
-        </tr>
-        {volist name="users" id="user" key="key"}
-        <tr>
-            <td>{$user->getData('user_id')}</td>
-            <td>{$user->getData('username')}</td>
-            <td>{$user->getData('password')}</td>
-            <td>{$user->getData('nickname')}</td>
-            <td>{$user->credit}</td>
-            <td><a class="btn btn-sm btn-primary" href="{:url('edit?user_id=' . $user->getData('user_id'))}"><i class="glyphicon glyphicon-pencil"></i> 编辑</a>
-            	<a class="btn btn-danger btn-sm" href="{:url('delete?user_id=' . $user->getData('user_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
-        </tr>
-        {/volist}
-    </table>
+    <tr class="info">
+        <th>序号</th>
+        <th>账号</th>
+        <th>密码</th>
+        <th>昵称</th>
+        <th>信用度</th>
+        <th>操作</th>
+    </tr>
+    {volist name="users" id="user" key="key"}
+    <tr>
+        <td>{$user->getData('user_id')}</td>
+        <td>{$user->getData('username')}</td>
+        <td>{$user->getData('password')}</td>
+        <td>{$user->getData('nickname')}</td>
+        <td>{$user->credit}</td>
+        <td><a class="btn btn-sm btn-primary" href="{:url('edit?user_id=' . $user->getData('user_id'))}"><i class="glyphicon glyphicon-pencil"></i> 编辑</a>
+        	<a class="btn btn-danger btn-sm" href="{:url('delete?user_id=' . $user->getData('user_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
+    </tr>
+    {/volist}
+{/block}
+{block name="render"}
     {$users->render()}
 {/block}
