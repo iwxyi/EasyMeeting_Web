@@ -31,6 +31,11 @@ class Lease extends Model
 		return $this->getData('entertain') == false ? '无' : '有';
 	}
 
+	public function getRemoteAttr()
+	{
+		return $this->getData('remote') == false ? '无' : '有';
+	}
+
 	public function getStartTimeAttr()
 	{
 		$date = $this->getData('start_time');

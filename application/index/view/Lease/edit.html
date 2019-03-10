@@ -5,6 +5,7 @@
 {block name="content"}
 
     <form action="{:url('update')}" method="post">
+        <input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}" />
 
         <div class="mdui-card-media">
             <img src="__STATIC__/view/img/login_card.jpg"/>
@@ -18,7 +19,7 @@
 
         <div style="padding: 10px;">
             <div class="mdui-chip">
-                <span class="mdui-chip-title">编辑租借会议室</span>
+                <span class="mdui-chip-title">租借会议室</span>
             </div>
             <select class="mdui-select" mdui-select name="room_id">
                 {volist name="$rooms" id="room"}
@@ -97,7 +98,7 @@
 
         <!-- 卡片的按钮 -->
         <div class="mdui-card-actions">
-            <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">编辑</button>
+            <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">保存</button>
         </div>
     </form>
 
