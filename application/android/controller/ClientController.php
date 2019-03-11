@@ -24,6 +24,7 @@ class ClientController extends Controller
 		{
 			$user = User::get(session('user_id'));
 
+			echo('<result>1</result>');
 			echo('<user_id>' . $user->getData('user_id') . '</user_id>');
 			echo('<nickname>' . $user->getData('nickname') . '</nickname>');
 			echo('<mobile>' . $user->getData('mobile') . '</mobile>');
@@ -234,5 +235,17 @@ class ClientController extends Controller
 		if (!$lease->delete())
 			return '<result>删除失败' . $lease->getError() . '</result>';
 		return "<result>OK</result>";
+	}
+
+	public function participantsChecked()
+	{
+		$lease_id = Request::instance()->param('lease_id/d');
+		$lease = Lease::get($lease_id);
+		$arrive = Request::instance()->param('arrive/d');
+	}
+
+	public function participantsLeaved()
+	{
+
 	}
 }
