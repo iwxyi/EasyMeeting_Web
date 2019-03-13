@@ -153,6 +153,7 @@ class Lease extends Model
 			 . '<admin_id>' . $this->getData('admin_id') . '</admin_id>'
 			 . '<room_name>' . $this->Room()->getData('name') . '</room_name>'
 			 . '<admin_name>' . $this->Admin()->getName() . '</admin_name>'
+			 . '<user_name>' . $this->User()->getData('nickname') . '</user_name>'
 			 . '<start_time>' . $this->getData('start_time') . '</start_time>'
 			 . '<finish_time>' . $this->getData('finish_time') . '</finish_time>'
 			 . '<num>' . $num . '</num>'
