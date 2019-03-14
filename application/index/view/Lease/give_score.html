@@ -2,6 +2,8 @@
 
 {block name="title"}编辑租约订单{/block}
 
+{block name="post_url"}{:url('setScore')}{/block}
+
 {block name="content"}
     <h4>管理员评分说明</h4>
     <p>
@@ -14,16 +16,21 @@
         根据以上介绍，请您（管理员）客观评价。
     </p>
 
-    <hr>
 
-    <form action="{:url('setScore')}" method="post">
-        <input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}" />
+    <input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}" />
 
-        <label for="circumstance">使用后环境记录：</label>
-        <input type="text" name="circumstance" value="{$lease->getData('circumstance')}" /> <br />
-        <label for="admin_score">对此次租约评分：</label>
-        <input type="text" name="admin_score" value="{$default_score}" /> <br />
+    <div class="mdui-textfield">
+        <label class="mdui-textfield-label">使用后环境记录</label>
+        <input class="mdui-textfield-input" type="text" name="circumstance" value="{$lease->getData('circumstance')}" />
+    </div>
 
-        <button type="submit">保存</button>
-    </form>
+    <div class="mdui-textfield">
+        <label class="mdui-textfield-label">对此次租约评分</label>
+        <input class="mdui-textfield-input" type="text" name="admin_score" value="{$default_score}" />
+    </div>
+
+    <!-- 卡片的按钮 -->
+    <div class="mdui-card-actions">
+        <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">保存</button>
+    </div>
 {/block}

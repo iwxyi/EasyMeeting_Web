@@ -30,7 +30,7 @@ class LeaseController extends Controller
 		$name = Request::instance()->param('name');
 		if (!empty($name)) {
 			$w = "%$name%";
-			$Lease->where("user_id like '$w' or admin_id like '$w' or room_id like '$w' or lease_id like '$w' or theme like '$w' or `usage` like '$w' or message like '$w'");
+			$Lease->where("user_id like '$w' or admin_id like '$w' or room_id like '$w' or lease_id like '$w' or theme like '$w' or `usage` like '$w' or message like '$w' or (room_id in (select room_id from room where name like '$w') )");
 		}
 
 		$leases = $Lease->paginate(5, false, [
