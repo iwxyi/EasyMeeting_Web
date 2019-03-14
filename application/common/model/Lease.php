@@ -74,6 +74,19 @@ class Lease extends Model
 		return date('Y-m-d H:m', $date);
 	}
 
+	public function getTimeShowed()
+	{
+		$date = $this->getData('start_time');
+		if ($date == 0) $start = "未设置";
+		else $start = date('Y-m-d H:m', $date);
+
+		$date = $this->getData('finish_time');
+		if ($date == 0) $finish = "未设置";
+		else $finish = date('H:m', $date);
+
+		return $start . " - " . $finish;
+	}
+
 	public function getFinishTimeShowed()
 	{
 		$date = $this->getData('finish_time');

@@ -4,11 +4,11 @@
 
 服务端：ThinkPHP框架 + MySQL数据库
 
-管理端：Web（ThinkPHP(PHP)+ jQuery(JS) + MDUI(CSS+JS) + bootstrap）
+管理端：Web（ThinkPHP(PHP)+ jQuery + MDUI+ bootstrap）
 
-预定端：Web、Android(Java)
+预定端：Web、Android(Java ME)
 
-会议室前端：Qt框架 + 人脸识别SDK
+会议室前端：C++/Qt框架 + 人脸识别SDK
 
 ## 环境
 
@@ -100,6 +100,7 @@ Server运行环境：PHPStudy
 | 留言       | message       | longtext |
 | 场地打扫   | sweep         | boolean  |
 | 现场招待   | entertain     | boolean  |
+| 远程会议   | remote        | boolean  |
 | 使用后环境 | circumstance  | varchar  |
 | 管理员评分 | admin_score   | int      |
 | 用户评分   | user_score    | int      |
@@ -157,11 +158,11 @@ Web 端交互采用 jQuery框架
 
 
 
-
-
 # MDUI框架
 
 Web 端主要 UI 采用 MDUI 框架
+
+
 
 # Boostrap框架
 
@@ -173,9 +174,11 @@ Web 端表格、菜单等控件采用 Boostrap 框架
 
 会议室桌面端 采用 Qt5.11.3(C++) 框架
 
+
+
 # 移动端：Android
 
-
+Java ME
 
 
 
