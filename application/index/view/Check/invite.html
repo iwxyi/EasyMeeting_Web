@@ -3,6 +3,9 @@
 {block name="title"}新增与会人员{/block}
 
 {block name="content"}
-    <h3>请使用与会员人账号打开以下网址：</h3>
-    <h3>{$Think.server.http_host}{:url('Client/join?lease_id=' . $lease->getData('lease_id'))}</h3>
+
+    <div class="mdui-textfield">
+        <label class="mdui-textfield-label">请使用与会员人账号打开以下网址</label>
+        <input class="mdui-textfield-input" type="text" value="{$Think.server.http_host}{:url('Client/join?lease_id=' . $lease->getData('lease_id'))}" />
+    </div>
 {/block}

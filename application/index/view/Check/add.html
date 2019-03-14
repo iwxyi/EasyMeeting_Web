@@ -2,12 +2,17 @@
 
 {block name="title"}手动添加与会人员{/block}
 
+{block name="post_url"}{:url('inserts')}{/block}
+
 {block name="content"}
-	<form action="{:url('inserts')}" method="post">
-		<input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}">
-		<label>请输入人员ID（多人空格分隔）</label>
-		<input type="text" name="user_ids" />
-		<br />
-		<button type="submit">添加</button>
-	</form>
+	<input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}">
+
+	<div class="mdui-textfield mdui-textfield-floating-label">
+        <label class="mdui-textfield-label">请输入人员ID（多人空格分隔）</label>
+        <input class="mdui-textfield-input" type="text" name="user_ids" id="user_ids"/>
+    </div>
+
+    <div class="mdui-card-actions">
+        <button class="mdui-btn mdui-ripple mdui-float-right" type="submit">添加</button>
+    </div>
 {/block}
