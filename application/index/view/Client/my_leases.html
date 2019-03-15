@@ -17,8 +17,8 @@
         <th>结束时间</th>
         <th>会议主题</th>
         <th>用途</th>
-        <th>清理</th>
-        <th>招待</th>
+        <th>额外服务</th>
+        <th>人数</th>
         <th>操作</th>
     </tr>
     {volist name="leases" id="lease" key="key"}
@@ -30,8 +30,10 @@
 		<td>{$lease->getFInishTimeShowed()}</td>
 		<td title="{$lease->getData('message')}">{$lease->getData('theme')}</td>
 		<td>{$lease->getData('usage')}</td>
-		<td>{$lease->sweep}</td>
-		<td>{$lease->entertain}</td>
+		<td>{eq name="$lease->getData('sweep')" value="有"}清理 {/eq}
+            {eq name="$lease->getData('entertain')" value="有"} 招待 {/eq}
+            {eq name="$lease->getData('remote')" value="有"} 远程{/eq}</td>
+        <td>0/{$lease->Room()->getData('max')}</td>
 		<td>
 			{eq name="$lease->canFinish()" value="1"}
 				<a class="btn btn-sm btn-primary" href="{:url('finishLease?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-pencil"></i> 提前结束</a>
