@@ -7,8 +7,16 @@
 {block name="content"}
 	<input type="hidden" name="lease_id" value="{$lease->getData('lease_id')}">
 
+	
+    <div class="mdui-textfield">
+        <div class="mdui-chip">
+	        <span class="mdui-chip-title" onclick="copyIds()">当前与会人员ID - 点击复制</span>
+	    </div>
+        <input class="mdui-textfield-input" type="text" value="{$ids}" />
+    </div>
+
 	<div class="mdui-textfield mdui-textfield-floating-label">
-        <label class="mdui-textfield-label">请输入人员ID（多人空格分隔）</label>
+        <label class="mdui-textfield-label">请输入新的人员ID（多人空格分隔）</label>
         <input class="mdui-textfield-input" type="text" name="user_ids" id="user_ids"/>
     </div>
 

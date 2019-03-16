@@ -47,6 +47,7 @@ class CheckController extends Controller
 	{
 		$lease_id = Request::instance()->param('lease_id');
 		$lease = Lease::get($lease_id);
+		$this->assign('ids', $this->allIds());
 		$this->assign('lease', $lease);
 		return $this->fetch();
 	}
@@ -126,5 +127,18 @@ class CheckController extends Controller
 		$check->checked = true;
 		$state = $check->delete();
 		return $this->success('删除人员成功', Request::instance()->header('referer'));
+	}
+
+	public function allIds()
+	{
+		$lease_id = Request::instance()->param('lease_id');
+		$Check = new Check;
+		$map = ['lease_id' => $lease_id];
+		$checks = $Check->where($map)->select();
+		$ans = '';
+		foreach ($checks as $check) {
+			$ans .= $check->user_id . ' ';
+		}
+		return trim($ans);
 	}
 }
