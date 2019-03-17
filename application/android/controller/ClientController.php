@@ -18,7 +18,7 @@ class ClientController extends Controller
 			return ;
 		$username = $param['username'];
 		$password = $param['password'];
-		$kind = 0;
+		$kind = 0; // 用户还是管理员
 
 		if (User::Login($username, $password))
 		{
