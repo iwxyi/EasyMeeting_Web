@@ -41,7 +41,24 @@ class ClientController extends Controller
 
 	public function register()
 	{
-		;
+		$param = Request::instance()->param();
+		if (!isset($param['username']) ||!isset($param['password']) || !isset($param['nickname']))
+			return '<result>数据出错</result>';
+		$username = $param['username'];
+		$password = $param['password'];
+		$nickname = $param['nickname'];
+
+		if (User::get(['username' => $username]) != null) {
+			return '<result>用户名已存在</result>';
+		}
+		$user = new User;
+		$user->username = $username;
+		$user->password = $password;
+		if (!$user->save()) {
+			return '<result>' . $user->error() . '</result>';
+		}
+		echo "<result>1</result>";
+		echo '<user_id>' . $user->user_id . '</result>';
 	}
 
 	public function leases()
