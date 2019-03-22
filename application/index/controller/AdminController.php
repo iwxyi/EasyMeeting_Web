@@ -41,7 +41,7 @@ class AdminController extends Controller
 
 			// 获取数据并调用分页
 			// 分页第三个额外参数，利用它来保持查找的内容
-			$admins = $Admin->paginate(5, false, [
+			$admins = $Admin->order("admin_id")->paginate(5, false, [
 				'query' => [ 'name' => $name]
 			]);
 

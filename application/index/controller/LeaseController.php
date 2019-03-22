@@ -33,7 +33,7 @@ class LeaseController extends Controller
 			$Lease->where("user_id like '$w' or admin_id like '$w' or room_id like '$w' or lease_id like '$w' or theme like '$w' or `usage` like '$w' or message like '$w' or (room_id in (select room_id from room where name like '$w') )");
 		}
 
-		$leases = $Lease->paginate(5, false, [
+		$leases = $Lease->order("lease_id desc")->paginate(5, false, [
 				'query' => [ 'name' => $name]
 			]);
 
@@ -197,7 +197,7 @@ class LeaseController extends Controller
 		if (empty($admin_id))
 			return $this->error('请先登录', url('Login/index'));
 
-		$leases->where("admin_id = '$admin_id'");
+		$leases->where("admin_id = '$admin_id'")->order("lease_id desc");
 		$leases = $leases->select();
 		$this->assign('leases', $leases);
 		return $this->fetch('my_leases');

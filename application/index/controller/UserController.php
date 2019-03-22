@@ -34,7 +34,7 @@ class UserController extends Controller
 		}
 
 		// 获取数据并调用分页
-		$users = $User->paginate(5, false, [
+		$users = $User->order("user_id desc")->paginate(5, false, [
 			'query' => [ 'name' => $name]
 		]);
 

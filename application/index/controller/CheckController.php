@@ -28,7 +28,7 @@ class CheckController extends Controller
 	{
 		$lease_id = Request::instance()->param('lease_id');
 		$checks = new Check;
-		$checks->where('lease_id=' . $lease_id);
+		$checks->where('lease_id=' . $lease_id)->order("check_id desc");
 		$checks = $checks->select();
 
 		$this->assign('checks', $checks);

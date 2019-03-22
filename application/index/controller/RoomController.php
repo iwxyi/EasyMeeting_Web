@@ -31,7 +31,7 @@ class RoomController extends Controller
 			$Room->where("name like '$w' or num like '$w' or room_id like '$w'");
 		}
 
-		$rooms = $Room->paginate(5, false, [
+		$rooms = $Room->order("room_id")->paginate(5, false, [
 				'query' => [ 'name' => $name]
 			]);
 
