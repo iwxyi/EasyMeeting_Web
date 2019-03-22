@@ -13,8 +13,7 @@
         <th>序号</th>
         <th>会议室名称</th>
         <th>管理员</th>
-        <th>开始时间</th>
-        <th>结束时间</th>
+        <th>会议时间</th>
         <th>会议主题</th>
         <th>用途</th>
         <th>额外服务</th>
@@ -26,8 +25,7 @@
 		<td>{$lease->getData('lease_id')}</td>
 		<td>{$lease->Room()->getData('name')}</td>
 		<td>{$lease->Admin()->getName()}</td>
-		<td>{$lease->getStartTimeShowed()}</td>
-		<td>{$lease->getFInishTimeShowed()}</td>
+		<td>{$lease->getTimeShowed()}</td>
 		<td title="{$lease->getData('message')}">{$lease->getData('theme')}</td>
 		<td>{$lease->getData('usage')}</td>
 		<td>{eq name="$lease->getData('sweep')" value="有"}清理 {/eq}

@@ -37,7 +37,7 @@ class ClientController extends Controller
 		if (empty($user_id))
 			return $this->error('请先登录', url('Login/index'));
 
-		$leases->where("user_id = '$user_id'");
+		$leases->where("user_id = '$user_id'")->order('start_time');
 		$leases = $leases->select();
 		$this->assign('leases', $leases);
 		return $this->fetch('my_leases');
