@@ -38,8 +38,8 @@
 			{eq name="lease->canFinish()" value="0"}
 				<a class="btn btn-sm btn-primary" href="{:url('giveScore?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-star"></i> 评分</a>
 			{/eq}
-			<a class="btn btn-sm btn-primary" href="{:url('editLease?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-pencil"></i> 编辑</a>
-        	<a class="btn btn-danger btn-sm" href="{:url('deleteLease?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
+			<a class="btn btn-sm btn-primary" href="{:url('edit?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-pencil"></i> 编辑</a>
+        	<a class="btn btn-danger btn-sm" href="{:url('delete?lease_id=' . $lease->getData('lease_id'))}"><i class="glyphicon glyphicon-trash"></i> 删除</a></td>
     </tr>
     {/volist}
 {/block}
