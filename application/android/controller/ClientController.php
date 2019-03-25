@@ -66,7 +66,7 @@ class ClientController extends Controller
 		$user_id = Request::instance()->param('user_id/d');
 
 		$Lease = new Lease;
-		$leases = $Lease->where('user_id=' . $user_id)->select();
+		$leases = $Lease->where('user_id=' . $user_id)->order('start_time desc')->select();
 		$str = "";
 		foreach ($leases as $lease) {
 			$str .= $lease->toString();
