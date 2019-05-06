@@ -16,7 +16,7 @@
     {volist name="rooms" id="room" key="key"}
     <tr>
         <td>{$room->getData('room_id')}</td>
-        <td>{$room->getData('name')}</td>
+        <td>{$room->getData('name')}{eq name="$room->getData('maintaining')" value="1" } （维修中） {/eq}</td>
         <td>{$room->Admin->getName()}</td>
         <td>{$room->getData('max')}</td>
         <td>{$room->getData('price')}</td>

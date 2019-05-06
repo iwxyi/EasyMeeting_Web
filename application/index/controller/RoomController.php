@@ -75,6 +75,7 @@ class RoomController extends Controller
 		if (is_null($Room))
 			return $this->error('未获取到 ID ', url('index'));
 		$this->assign("Room", $Room);
+		$this->assign('maintaining', $Room->maintaining);
 		return $this->fetch();
 	}
 
@@ -88,6 +89,10 @@ class RoomController extends Controller
 			$room->name = $post['name'];
 			if (isset($post['max']))
 				$room->max = $post['max'];
+			if (isset($post['maintaining'])) // check有的话就是1，没有就是0
+				$room->maintaining = true;
+			else
+				$room->maintaining = false;
 			/*$room->building = $post['building'];
 			$room->floor = $post['floor '];
 			$room->num = $post['num'];
